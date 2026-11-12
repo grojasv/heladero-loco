@@ -2,6 +2,14 @@
 
 All notable changes to Heladero Loco. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.3.0] — 2026-11-12
+### Added
+- **The freezer wait.** A freezing tub shows how long is left and when it will be ready. When the time is up it sparkles, chimes and El Heladero Loco tells you.
+- **The machine step.** A ready tub shows the program (LIGHT ICE CREAM), the RE-SPIN tip and the EXTRAS step.
+- **Extras:** add nut creams or nuts and see the final macros next to the base ones.
+- **Copy macros** as one line, for example `Tarrina 3 · 372 kcal · P 49 · C 15 · G 12`.
+- You can spin a tub before its time, or empty it, from its own screen.
+
 ## [0.2.0] — 2026-11-12
 ### Added
 - **Fill a tub.** Tap an empty tub to open the fridge, tap ingredients in, and set the amounts with − and +.
