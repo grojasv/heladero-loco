@@ -1,0 +1,97 @@
+{
+  "hello": {
+    "es": ["¡Bienvenido al laboratorio, maestro del frío!", "¡El congelador ruge! ¿Qué inventamos hoy?", "¡Ciencia, frío y proteína! ¡Al laboratorio!", "¡Hoy toca helado de campeonato!"],
+    "ca": ["Benvingut al laboratori, mestre del fred!", "El congelador rugeix! Què inventem avui?", "Ciència, fred i proteïna! Al laboratori!", "Avui toca gelat de campionat!"],
+    "en": ["Welcome to the lab, master of the cold!", "The freezer roars! What shall we invent today?", "Science, cold and protein! To the lab!", "Today we make championship ice cream!"]
+  },
+  "readyHello": {
+    "es": ["¡Hay tarrinas listas! ¡A la Ninja!", "¡El frío ha hecho su magia! ¡Hay tarrina lista!"],
+    "ca": ["Hi ha terrines a punt! A la Ninja!", "El fred ha fet la seva màgia! Hi ha terrina a punt!"],
+    "en": ["Tubs are ready! To the Ninja!", "The cold has done its magic! A tub is ready!"]
+  },
+  "soon": {
+    "es": ["Esa máquina aún no está montada. ¡Pronto!"],
+    "ca": ["Aquesta màquina encara no està muntada. Aviat!"],
+    "en": ["That machine is not built yet. Soon!"]
+  },
+  "build": {
+    "es": ["¡Abre la nevera y mezcla sin miedo!", "¡A montar la fórmula perfecta!", "¡Elige ingredientes, yo calculo los macros!"],
+    "ca": ["Obre la nevera i barreja sense por!", "A muntar la fórmula perfecta!", "Tria ingredients, jo calculo els macros!"],
+    "en": ["Open the fridge and mix without fear!", "Let's build the perfect formula!", "Pick the ingredients, I do the maths!"]
+  },
+  "overfill": {
+    "es": ["¡Cuidado! Te pasas de la línea de llenado.", "¡Demasiada mezcla! La tarrina va a rebosar."],
+    "ca": ["Compte! Passes de la línia d'ompliment.", "Massa barreja! La terrina vessarà."],
+    "en": ["Careful! You are past the fill line.", "Too much mix! The tub will overflow."]
+  },
+  "frozen": {
+    "es": ["¡Al congelador! Nos vemos en veinticuatro horas.", "¡Tarrina al frío! Ahora, paciencia científica.", "¡Congelando! El hielo trabaja para nosotros."],
+    "ca": ["Al congelador! Ens veiem d'aquí a vint-i-quatre hores.", "Terrina al fred! Ara, paciència científica.", "Congelant! El gel treballa per nosaltres."],
+    "en": ["Into the freezer! See you in twenty-four hours.", "Tub in the cold! Now, scientific patience.", "Freezing! The ice works for us."]
+  },
+  "ready": {
+    "es": ["¡Tarrina lista! ¡A la Ninja!", "¡Eureka! Ya está congelada."],
+    "ca": ["Terrina a punt! A la Ninja!", "Eureka! Ja està congelada."],
+    "en": ["Tub ready! To the Ninja!", "Eureka! It is frozen solid."]
+  },
+  "notReady": {
+    "es": ["Aún no está. El frío necesita su tiempo.", "Paciencia, maestro. Todavía se está congelando."],
+    "ca": ["Encara no. El fred necessita el seu temps.", "Paciència, mestre. Encara s'està congelant."],
+    "en": ["Not yet. The cold needs its time.", "Patience, master. It is still freezing."]
+  },
+  "spinIntro": {
+    "es": ["¡Hora de convertir el bloque en helado!", "¡A la máquina! Elige tus extras."],
+    "ca": ["Hora de convertir el bloc en gelat!", "A la màquina! Tria els teus extres."],
+    "en": ["Time to turn the block into ice cream!", "To the machine! Choose your extras."]
+  },
+  "spun": {
+    "es": ["¡Cremoso como la seda! A disfrutar.", "¡Helado listo! Luego me cuentas qué tal.", "¡Obra maestra! Buen provecho, maestro."],
+    "ca": ["Cremós com la seda! A gaudir.", "Gelat a punt! Després m'expliques què tal.", "Obra mestra! Bon profit, mestre."],
+    "en": ["Smooth as silk! Enjoy.", "Ice cream done! Tell me how it was.", "A masterpiece! Enjoy it, master."]
+  },
+  "rateIntro": {
+    "es": ["¿Qué tal estaba? ¡La ciencia necesita datos!", "¡Puntúa la mezcla y aprendemos!"],
+    "ca": ["Què tal estava? La ciència necessita dades!", "Puntua la barreja i aprenem!"],
+    "en": ["How was it? Science needs data!", "Rate the mix and we learn!"]
+  },
+  "rateTop": {
+    "es": ["¡Fórmula ganadora! La guardo en el podio.", "¡Brutal! Esta mezcla hay que repetirla."],
+    "ca": ["Fórmula guanyadora! La guardo al podi.", "Brutal! Aquesta barreja s'ha de repetir."],
+    "en": ["A winning formula! Onto the podium it goes.", "Brilliant! This mix must be repeated."]
+  },
+  "rateMid": {
+    "es": ["¡Apuntado! Con cada tarrina afinamos más.", "¡Dato guardado! La próxima saldrá mejor."],
+    "ca": ["Apuntat! Amb cada terrina afinem més.", "Dada guardada! La propera sortirà millor."],
+    "en": ["Noted! Every tub makes us sharper.", "Saved! The next one will be better."]
+  },
+  "rateLow": {
+    "es": ["Vaya. Un experimento fallido también enseña.", "Anotado. Esta fórmula vuelve al laboratorio."],
+    "ca": ["Vaja. Un experiment fallit també ensenya.", "Anotat. Aquesta fórmula torna al laboratori."],
+    "en": ["Oh well. A failed experiment also teaches.", "Noted. This formula goes back to the lab."]
+  },
+  "emptied": {
+    "es": ["Tarrina vacía y lista para otro invento."],
+    "ca": ["Terrina buida i a punt per a un altre invent."],
+    "en": ["Tub empty and ready for another invention."]
+  },
+  "copied": {
+    "es": ["¡Macros copiados!"],
+    "ca": ["Macros copiats!"],
+    "en": ["Macros copied!"]
+  },
+  "noEmpty": {
+    "es": ["No hay tarrinas vacías. ¡Cómete una primero!"],
+    "ca": ["No hi ha terrines buides. Menja-te'n una primer!"],
+    "en": ["No empty tubs. Eat one first!"]
+  },
+  "recipeSaved": {
+    "es": ["¡Receta guardada en el cuaderno!"],
+    "ca": ["Recepta guardada a la llibreta!"],
+    "en": ["Recipe saved in the notebook!"]
+  },
+  "saved": {
+    "es": ["¡Guardado!"],
+    "ca": ["Desat!"],
+    "en": ["Saved!"]
+  }
+}

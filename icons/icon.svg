@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<rect width="512" height="512" fill="#8fe0c4"/>
+<polygon points="256,256 636.0,256.0 617.4,373.4" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 563.4,479.4 479.4,563.4" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 373.4,617.4 256.0,636.0" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 138.6,617.4 32.6,563.4" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 -51.4,479.4 -105.4,373.4" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 -124.0,256.0 -105.4,138.6" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 -51.4,32.6 32.6,-51.4" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 138.6,-105.4 256.0,-124.0" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 373.4,-105.4 479.4,-51.4" fill="#fff7e8" opacity="0.5"/><polygon points="256,256 563.4,32.6 617.4,138.6" fill="#fff7e8" opacity="0.5"/>
+<circle cx="256" cy="256" r="198" fill="none" stroke="#ff8fb1" stroke-width="12"/>
+<circle cx="256" cy="256" r="206" fill="none" stroke="#2b2140" stroke-width="3"/>
+<svg x="91" y="101" width="330" height="330" xmlns="http://www.w3.org/2000/svg" viewBox="-64 -66 128 128" class="heladero-head" role="img" aria-label="El Heladero Loco"><g class="hl-head">
+      <polygon points="-26,15 -57.5,17.2 -29.9,1.7 -52.2,-9.2 -27.5,-11.9 -48.1,-35.8 -19.3,-23 -23.8,-47.4 -6.9,-29.2 0,-60 6.9,-29.2 23.8,-47.4 19.3,-23 48.1,-35.8 27.5,-11.9 52.2,-9.2 29.9,1.7 57.5,17.2 26,15" fill="#ffffff" stroke="#2b2140" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="-39" cy="4" r="7" fill="#f6c39a" stroke="#2b2140" stroke-width="3"/>
+      <circle cx="39" cy="4" r="7" fill="#f6c39a" stroke="#2b2140" stroke-width="3"/>
+      <ellipse cx="0" cy="2" rx="38" ry="40" fill="#f6c39a" stroke="#2b2140" stroke-width="3"/>
+      <path d="M-24,-30 Q0,-40 24,-30" fill="none" stroke="#dd9c70" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-38,-8 L38,-8" stroke="#2b2140" stroke-width="9" stroke-linecap="round"/>
+      <path d="M-38,-8 L38,-8" stroke="#e85f8a" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="-16" cy="-8" r="15" fill="#8fe0c4" stroke="#2b2140" stroke-width="3"/>
+      <circle cx="16" cy="-8" r="15" fill="#8fe0c4" stroke="#2b2140" stroke-width="3"/>
+      <circle cx="-16" cy="-8" r="10.5" fill="#c9f4ff" stroke="#2b2140" stroke-width="2"/>
+      <circle cx="16" cy="-8" r="10.5" fill="#c9f4ff" stroke="#2b2140" stroke-width="2"/>
+      <rect x="-3" y="-11" width="6" height="6" fill="#4fbf9b" stroke="#2b2140" stroke-width="2"/>
+      <circle cx="-15" cy="-7" r="4.5" fill="#2b2140"/>
+      <circle cx="18" cy="-9" r="2.6" fill="#2b2140"/>
+      <circle cx="-19" cy="-12" r="2.2" fill="#ffffff"/>
+      <circle cx="13" cy="-12" r="2.2" fill="#ffffff"/>
+      <ellipse cx="0" cy="9" rx="5" ry="4" fill="#dd9c70" stroke="#2b2140" stroke-width="2"/>
+      <g class="hl-mouth"><path d="M-16,15 Q0,36 16,15 Q0,20 -16,15 Z" fill="#6b1f3a" stroke="#2b2140" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M-12,17.5 Q0,22 12,17.5 L10,20.5 Q0,24 -10,20.5 Z" fill="#ffffff"/>
+      <ellipse cx="0" cy="27" rx="5" ry="3" fill="#ff8fa3"/></g>
+    </g></svg>
+</svg>

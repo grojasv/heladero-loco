@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fff7e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1d1830" media="(prefers-color-scheme: dark)">
+  <title>Heladero Loco</title>
+  <meta name="description" content="El Heladero Loco: monta tus tarrinas de helado proteico, calcula sus macros y aprende qué mezcla funciona.">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600..800&family=Nunito:wght@400..800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#/"><span>Heladero <b>Loco</b></span></a>
+    <button type="button" class="mute" id="muteBtn" data-act="mute">🔊</button>
+    <div class="langs" role="group" aria-label="Language">
+      <button data-lang="ca">CA</button><button data-lang="es">ES</button><button data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main id="view" aria-live="polite"></main>
+
+  <footer class="foot" id="foot"></footer>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <nav class="nav" id="nav" hidden></nav>
+
+  <script src="mascot.js"></script>
+  <script src="sound.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
