@@ -2,7 +2,7 @@
 // No build step. Feature screens live in their own files and register themselves on window.HL:
 // HL.routes[name] = { render(arg), tab }, HL.acts[name] = (el, event) => …, HL.tabs.push({ … }).
 window.HL = (() => {
-  const VERSION = '0.1.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.2.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOCALE = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const DEFAULTS = { tubs: 7, freezeHours: 24 };
@@ -266,6 +266,7 @@ window.HL = (() => {
     current = routes[name] ? name : 'home';
     if (current === 'home') checkReady();
     document.body.dataset.route = current;
+    toastEl.hidden = true;
     r.render(arg ? decodeURIComponent(arg) : undefined);
     renderNav(r.tab);
     if (!r.keepScroll) window.scrollTo(0, 0);

@@ -1,0 +1,431 @@
+{
+  "bebida-soja": {
+    "n": 1,
+    "name": {
+      "es": "Bebida de soja sin azúcar",
+      "ca": "Beguda de soja sense sucre",
+      "en": "Unsweetened soy drink"
+    },
+    "emoji": "🥛",
+    "shelf": "base",
+    "unit": "ml",
+    "per100": {
+      "kcal": 32,
+      "protein": 3.1,
+      "carbs": 1,
+      "fat": 1.7
+    },
+    "default": 280,
+    "step": 10,
+    "source": "https://world.openfoodfacts.org/product/24038072/",
+    "confirmed": false
+  },
+  "only-whey-zero": {
+    "n": 2,
+    "name": {
+      "es": "Only Whey Zero",
+      "ca": "Only Whey Zero",
+      "en": "Only Whey Zero"
+    },
+    "emoji": "💪",
+    "shelf": "protein",
+    "unit": "g",
+    "per100": {
+      "kcal": 390.79,
+      "protein": 73.47,
+      "carbs": 9.21,
+      "fat": 6.26
+    },
+    "default": 45,
+    "step": 5,
+    "source": "https://bigsupps.site/products/only-whey-zero",
+    "confirmed": true,
+    "protein": {
+      "kind": "whey"
+    },
+    "flavours": [
+      {
+        "id": "natillas",
+        "name": "Natillas",
+        "color": "#ffdf7e"
+      },
+      {
+        "id": "white-chocolate",
+        "name": "White Chocolate",
+        "color": "#fff1cf"
+      },
+      {
+        "id": "strawberry",
+        "name": "Strawberry Milkshake",
+        "color": "#ff9db5"
+      },
+      {
+        "id": "belgian-chocolate",
+        "name": "Belgian Chocolate",
+        "color": "#8a5a3c"
+      },
+      {
+        "id": "bigcrac",
+        "name": "Bigcrac Snack",
+        "color": "#c98f5a"
+      },
+      {
+        "id": "brownie",
+        "name": "Brownie",
+        "color": "#6e4630"
+      },
+      {
+        "id": "capuccino-vanilla",
+        "name": "Capuccino & Vanilla",
+        "color": "#d9b48a"
+      },
+      {
+        "id": "choco-fudge",
+        "name": "Choco Fudge",
+        "color": "#7a4a30"
+      },
+      {
+        "id": "choco-hazelnut",
+        "name": "Choco Hazelnut",
+        "color": "#9a6a48"
+      },
+      {
+        "id": "cookies-cream",
+        "name": "Cookies & Cream",
+        "color": "#cfc6bb"
+      },
+      {
+        "id": "cookies-ice-cream",
+        "name": "Cookies Ice Cream",
+        "color": "#e6dccb"
+      },
+      {
+        "id": "mowgly-chocolate",
+        "name": "Mowgly Chocolate",
+        "color": "#a06a45"
+      },
+      {
+        "id": "mowgly-white",
+        "name": "Mowgly White Choco",
+        "color": "#f3e3c0"
+      },
+      {
+        "id": "pink-cake",
+        "name": "Pink Cake",
+        "color": "#ffb3c8"
+      },
+      {
+        "id": "vanilla-cream",
+        "name": "Vanilla Cream",
+        "color": "#fff0b8"
+      }
+    ]
+  },
+  "total-protein-zero": {
+    "n": 3,
+    "name": {
+      "es": "Total Protein Zero",
+      "ca": "Total Protein Zero",
+      "en": "Total Protein Zero"
+    },
+    "emoji": "🧪",
+    "shelf": "protein",
+    "unit": "g",
+    "per100": {
+      "kcal": 383,
+      "protein": 78,
+      "carbs": 7.6,
+      "fat": 3.9
+    },
+    "default": 45,
+    "step": 5,
+    "source": "https://bigsupps.site/products/total-protein-zero",
+    "confirmed": true,
+    "protein": {
+      "kind": "blend"
+    },
+    "flavours": [
+      {
+        "id": "natillas",
+        "name": "Natillas",
+        "color": "#ffdf7e"
+      },
+      {
+        "id": "white-chocolate",
+        "name": "White Chocolate",
+        "color": "#fff1cf"
+      },
+      {
+        "id": "strawberry",
+        "name": "Strawberry Milkshake",
+        "color": "#ff9db5"
+      },
+      {
+        "id": "belgian-chocolate",
+        "name": "Belgian Chocolate",
+        "color": "#8a5a3c"
+      },
+      {
+        "id": "cookies-cream",
+        "name": "Cookies & Cream",
+        "color": "#cfc6bb"
+      },
+      {
+        "id": "mowgly-chocolate",
+        "name": "Mowgly Chocolate",
+        "color": "#a06a45"
+      },
+      {
+        "id": "mowgly-white",
+        "name": "Mowgly White Choco",
+        "color": "#f3e3c0"
+      }
+    ]
+  },
+  "platano": {
+    "n": 4,
+    "name": {
+      "es": "Plátano maduro",
+      "ca": "Plàtan madur",
+      "en": "Ripe banana"
+    },
+    "emoji": "🍌",
+    "shelf": "fruit",
+    "unit": "g",
+    "per100": {
+      "kcal": 89,
+      "protein": 1.09,
+      "carbs": 22.8,
+      "fat": 0.33
+    },
+    "default": 50,
+    "step": 10,
+    "source": "https://fdc.nal.usda.gov/food-details/173944/nutrients",
+    "confirmed": true
+  },
+  "goma-xantana": {
+    "n": 5,
+    "name": {
+      "es": "Goma xantana",
+      "ca": "Goma xantana",
+      "en": "Xanthan gum"
+    },
+    "emoji": "🧬",
+    "shelf": "stabiliser",
+    "unit": "g",
+    "per100": {
+      "kcal": 320,
+      "protein": 5,
+      "carbs": 77.5,
+      "fat": 0
+    },
+    "default": 0.75,
+    "step": 0.25,
+    "source": "https://www.fankal.com/es/alimentos/6078-goma-xantana-100.html",
+    "confirmed": false,
+    "hint": {
+      "es": "¼ cucharadita ≈ 0,75 g",
+      "ca": "¼ culleradeta ≈ 0,75 g",
+      "en": "¼ teaspoon ≈ 0.75 g"
+    }
+  },
+  "sal": {
+    "n": 6,
+    "name": {
+      "es": "Sal",
+      "ca": "Sal",
+      "en": "Salt"
+    },
+    "emoji": "🧂",
+    "shelf": "other",
+    "unit": "g",
+    "per100": {
+      "kcal": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0
+    },
+    "default": 0.5,
+    "step": 0.5,
+    "source": "https://fdc.nal.usda.gov/food-details/173468/nutrients",
+    "confirmed": true,
+    "hint": {
+      "es": "Una pizca ≈ 0,5 g",
+      "ca": "Un pessic ≈ 0,5 g",
+      "en": "A pinch ≈ 0.5 g"
+    }
+  },
+  "yogur-griego-0": {
+    "n": 7,
+    "name": {
+      "es": "Yogur griego 0%",
+      "ca": "Iogurt grec 0%",
+      "en": "Greek yogurt 0%"
+    },
+    "emoji": "🥣",
+    "shelf": "base",
+    "unit": "g",
+    "per100": {
+      "kcal": 59,
+      "protein": 10.2,
+      "carbs": 3.6,
+      "fat": 0.39
+    },
+    "default": 100,
+    "step": 10,
+    "source": "https://fdc.nal.usda.gov/food-details/170894/nutrients",
+    "confirmed": false
+  },
+  "maizena-potax": {
+    "n": 8,
+    "name": {
+      "es": "Maizena Potax (flan y natillas)",
+      "ca": "Maizena Potax (flam i natilles)",
+      "en": "Maizena Potax (custard powder)"
+    },
+    "emoji": "🍮",
+    "shelf": "stabiliser",
+    "unit": "g",
+    "per100": {
+      "kcal": 350,
+      "protein": 0.5,
+      "carbs": 87,
+      "fat": 0.5
+    },
+    "default": 4,
+    "step": 1,
+    "source": "https://www.fitatu.com/catalog/es/maizena-potax-mezcla-para-preparar-flanes-y-natillas--90641436",
+    "confirmed": false,
+    "hint": {
+      "es": "1 cucharadita ≈ 4 g",
+      "ca": "1 culleradeta ≈ 4 g",
+      "en": "1 teaspoon ≈ 4 g"
+    }
+  },
+  "cacao-puro": {
+    "n": 9,
+    "name": {
+      "es": "Cacao puro desgrasado",
+      "ca": "Cacau pur desgreixat",
+      "en": "Defatted cocoa powder"
+    },
+    "emoji": "🍫",
+    "shelf": "other",
+    "unit": "g",
+    "per100": {
+      "kcal": 375,
+      "protein": 25.5,
+      "carbs": 16.3,
+      "fat": 16
+    },
+    "default": 5,
+    "step": 1,
+    "source": "https://www.fatsecret.es/calor%C3%ADas-nutrici%C3%B3n/valor/cacao-desgrasado/100g",
+    "confirmed": false
+  },
+  "crema-cacahuete": {
+    "n": 10,
+    "name": {
+      "es": "Crema de cacahuete 100%",
+      "ca": "Crema de cacauet 100%",
+      "en": "Peanut butter 100%"
+    },
+    "emoji": "🥜",
+    "shelf": "extra",
+    "unit": "g",
+    "per100": {
+      "kcal": 598,
+      "protein": 22.2,
+      "carbs": 22.3,
+      "fat": 51.4
+    },
+    "default": 15,
+    "step": 5,
+    "source": "https://fdc.nal.usda.gov/food-details/172470/nutrients",
+    "confirmed": false
+  },
+  "crema-avellana": {
+    "n": 11,
+    "name": {
+      "es": "Crema de avellana 100%",
+      "ca": "Crema d’avellana 100%",
+      "en": "Hazelnut butter 100%"
+    },
+    "emoji": "🌰",
+    "shelf": "extra",
+    "unit": "g",
+    "per100": {
+      "kcal": 684,
+      "protein": 14.9,
+      "carbs": 14.7,
+      "fat": 60.7
+    },
+    "default": 15,
+    "step": 5,
+    "source": "https://world.openfoodfacts.org/product/8437016495797",
+    "confirmed": false
+  },
+  "crema-pistacho": {
+    "n": 12,
+    "name": {
+      "es": "Crema de pistacho 100%",
+      "ca": "Crema de festuc 100%",
+      "en": "Pistachio cream 100%"
+    },
+    "emoji": "💚",
+    "shelf": "extra",
+    "unit": "g",
+    "per100": {
+      "kcal": 572,
+      "protein": 21,
+      "carbs": 28.3,
+      "fat": 45.8
+    },
+    "default": 15,
+    "step": 5,
+    "source": "https://fdc.nal.usda.gov/food-details/170185/nutrients",
+    "confirmed": false
+  },
+  "cacahuetes": {
+    "n": 13,
+    "name": {
+      "es": "Cacahuetes tostados",
+      "ca": "Cacauets torrats",
+      "en": "Roasted peanuts"
+    },
+    "emoji": "🥜",
+    "shelf": "extra",
+    "unit": "g",
+    "per100": {
+      "kcal": 587,
+      "protein": 24.4,
+      "carbs": 21.3,
+      "fat": 49.7
+    },
+    "default": 10,
+    "step": 5,
+    "source": "https://fdc.nal.usda.gov/food-details/173806/nutrients",
+    "confirmed": false
+  },
+  "avellanas": {
+    "n": 14,
+    "name": {
+      "es": "Avellanas tostadas",
+      "ca": "Avellanes torrades",
+      "en": "Roasted hazelnuts"
+    },
+    "emoji": "🌰",
+    "shelf": "extra",
+    "unit": "g",
+    "per100": {
+      "kcal": 646,
+      "protein": 15,
+      "carbs": 17.6,
+      "fat": 62.4
+    },
+    "default": 10,
+    "step": 5,
+    "source": "https://fdc.nal.usda.gov/food-details/170583/nutrients",
+    "confirmed": false
+  }
+}
