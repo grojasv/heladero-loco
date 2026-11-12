@@ -2,6 +2,13 @@
 
 All notable changes to Heladero Loco. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.4.0] — 2026-11-12
+### Added
+- **Rate a tub** after eating it: texture and taste from 1 to 5, whether it needed a RE-SPIN, and an optional note. Saving it empties the tub.
+- **History tab with a mix ranking:** every mix you have tried, sorted by its average score, with how many times you made it and its macros.
+- **Repeat:** one tap loads a ranked mix into the first empty tub. Your top 3 mixes also show as starting points in the builder.
+- **Diary:** every rated tub by date, with its scores and note.
+
 ## [0.3.0] — 2026-11-12
 ### Added
 - **The freezer wait.** A freezing tub shows how long is left and when it will be ready. When the time is up it sparkles, chimes and El Heladero Loco tells you.
