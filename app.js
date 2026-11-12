@@ -2,7 +2,7 @@
 // No build step. Feature screens live in their own files and register themselves on window.HL:
 // HL.routes[name] = { render(arg), tab }, HL.acts[name] = (el, event) => …, HL.tabs.push({ … }).
 window.HL = (() => {
-  const VERSION = '0.4.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.5.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOCALE = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const DEFAULTS = { tubs: 7, freezeHours: 24 };
@@ -18,7 +18,7 @@ window.HL = (() => {
     left: { es: 'faltan {t}', ca: 'falten {t}', en: '{t} left' },
     spinNow: { es: 'A la Ninja', ca: 'A la Ninja', en: 'To the Ninja' },
     tub: { es: 'Tarrina', ca: 'Terrina', en: 'Tub' },
-    counts: { es: '{f} congelando · {r} listas · {e} vacías', ca: '{f} congelant · {r} a punt · {e} buides', en: '{f} freezing · {r} ready · {e} empty' },
+    counts: { es: 'Congelando: {f} · Listas: {r} · Vacías: {e}', ca: 'Congelant: {f} · A punt: {r} · Buides: {e}', en: 'Freezing: {f} · Ready: {r} · Empty: {e}' },
     back: { es: '‹ Volver', ca: '‹ Torna', en: '‹ Back' },
     notFound: { es: 'No encontrado.', ca: 'No trobat.', en: 'Not found.' },
     loadError: { es: 'No se han podido cargar los datos.', ca: 'No s’han pogut carregar les dades.', en: 'Couldn’t load the data.' },

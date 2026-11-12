@@ -1,0 +1,56 @@
+[
+  {
+    "id": "proceso", "emoji": "🧪",
+    "title": { "es": "El proceso, paso a paso", "ca": "El procés, pas a pas", "en": "The process, step by step" },
+    "body": {
+      "es": ["Batidora: el líquido abajo, luego la fruta y arriba los polvos. Bate 30 segundos.", "Vierte en la tarrina sin pasar la línea MAX FILL y métela enseguida en el congelador.", "Congela al menos 24 horas, sobre una superficie plana.", "Nada más sacarla, programa LIGHT ICE CREAM.", "Si queda arenoso, 1 cucharada de bebida en el centro y RE-SPIN."],
+      "ca": ["Batedora: el líquid a sota, després la fruita i a dalt les pólvores. Bat 30 segons.", "Aboca a la terrina sense passar la línia MAX FILL i posa-la de seguida al congelador.", "Congela almenys 24 hores, sobre una superfície plana.", "Tot just treta, programa LIGHT ICE CREAM.", "Si queda sorrenc, 1 cullerada de beguda al centre i RE-SPIN."],
+      "en": ["Blender: liquid at the bottom, then the fruit, powders on top. Blend for 30 seconds.", "Pour into the tub without passing the MAX FILL line and put it in the freezer at once.", "Freeze for at least 24 hours, on a flat surface.", "Straight out of the freezer, run LIGHT ICE CREAM.", "If it is crumbly, add 1 tablespoon of drink in the centre and RE-SPIN."]
+    }
+  },
+  {
+    "id": "capas", "emoji": "🥶",
+    "title": { "es": "Se ha separado en dos capas", "ca": "S'ha separat en dues capes", "en": "It split into two layers" },
+    "body": {
+      "es": ["Pasa cuando la mezcla reposa antes de congelarse o no lleva espesante: el agua baja y la espuma sube.", "Arreglo: LIGHT ICE CREAM y después RE-SPIN con 1 cucharada de bebida en el centro. La cuchilla lo mezcla todo.", "Para evitarlo: añade goma xantana (¼ de cucharadita), bate bien y congela nada más verter."],
+      "ca": ["Passa quan la barreja reposa abans de congelar-se o no porta espessidor: l'aigua baixa i l'escuma puja.", "Solució: LIGHT ICE CREAM i després RE-SPIN amb 1 cullerada de beguda al centre. La fulla ho barreja tot.", "Per evitar-ho: afegeix goma xantana (¼ de culleradeta), bat bé i congela tot just abocar."],
+      "en": ["It happens when the mix rests before freezing or has no stabiliser: the water sinks and the foam rises.", "Fix: LIGHT ICE CREAM, then RE-SPIN with 1 tablespoon of drink in the centre. The blade mixes it all.", "To avoid it: add xanthan gum (¼ teaspoon), blend well and freeze right after pouring."]
+    }
+  },
+  {
+    "id": "arenoso", "emoji": "🏜️",
+    "title": { "es": "Queda arenoso o en polvo", "ca": "Queda sorrenc o en pols", "en": "It comes out crumbly or powdery" },
+    "body": {
+      "es": ["Es normal en mezclas con poca grasa tras el primer ciclo.", "Echa 1 cucharada de bebida en el centro y pulsa RE-SPIN. Si hace falta, repite una vez más.", "Una cucharada de crema de frutos secos con EXTRAS también lo vuelve más cremoso."],
+      "ca": ["És normal en barreges amb poc greix després del primer cicle.", "Posa 1 cullerada de beguda al centre i prem RE-SPIN. Si cal, repeteix-ho una vegada més.", "Una cullerada de crema de fruits secs amb EXTRAS també el fa més cremós."],
+      "en": ["It is normal for low-fat mixes after the first cycle.", "Add 1 tablespoon of drink in the centre and press RE-SPIN. Repeat once more if needed.", "A spoon of nut cream with EXTRAS also makes it creamier."]
+    }
+  },
+  {
+    "id": "extras", "emoji": "🥜",
+    "title": { "es": "Cómo añadir los extras", "ca": "Com afegir els extres", "en": "How to add the extras" },
+    "body": {
+      "es": ["Primero deja el helado homogéneo: LIGHT ICE CREAM y RE-SPIN si hace falta.", "Con una cuchara, haz un hueco en el centro que llegue hasta el fondo, de unos 3 o 4 cm de ancho.", "Echa dentro 15 a 20 g de crema o los frutos secos. No los dejes en la superficie.", "Pulsa EXTRAS."],
+      "ca": ["Primer deixa el gelat homogeni: LIGHT ICE CREAM i RE-SPIN si cal.", "Amb una cullera, fes un forat al centre que arribi fins al fons, d'uns 3 o 4 cm d'ample.", "Posa-hi 15 a 20 g de crema o els fruits secs. No els deixis a la superfície.", "Prem EXTRAS."],
+      "en": ["First get the ice cream smooth: LIGHT ICE CREAM, and RE-SPIN if needed.", "With a spoon, dig a hole in the centre down to the bottom, about 3 to 4 cm wide.", "Drop in 15 to 20 g of cream or the nuts. Do not leave them on the surface.", "Press EXTRAS."]
+    }
+  },
+  {
+    "id": "tanda", "emoji": "🏭",
+    "title": { "es": "Una tanda sin lavar la batidora", "ca": "Una tanda sense rentar la batedora", "en": "A batch without washing the blender" },
+    "body": {
+      "es": ["Ve del sabor más claro al más intenso: chocolate blanco, natillas, fresa y, al final, chocolate.", "Prepara antes los polvos de cada tarrina en un vaso seco.", "Al cambiar de sabor, echa los ingredientes del siguiente directamente en el vaso."],
+      "ca": ["Ves del gust més clar al més intens: xocolata blanca, natilles, maduixa i, al final, xocolata.", "Prepara abans les pólvores de cada terrina en un got sec.", "En canviar de gust, posa els ingredients del següent directament al got."],
+      "en": ["Go from the lightest flavour to the strongest: white chocolate, natillas, strawberry and, last, chocolate.", "Measure the powders for each tub into a dry glass beforehand.", "When you change flavour, put the next ingredients straight into the jug."]
+    }
+  },
+  {
+    "id": "congelador", "emoji": "❄️",
+    "title": { "es": "El congelador", "ca": "El congelador", "en": "The freezer" },
+    "body": {
+      "es": ["La máquina está pensada para bases entre -12 °C y -25 °C (manual de Ninja).", "Congela siempre en plano: una tarrina inclinada puede dañar la cuchilla.", "Procésala nada más sacarla del congelador."],
+      "ca": ["La màquina està pensada per a bases entre -12 °C i -25 °C (manual de Ninja).", "Congela sempre en pla: una terrina inclinada pot fer malbé la fulla.", "Processa-la tot just treta del congelador."],
+      "en": ["The machine is designed for bases between -12 °C and -25 °C (Ninja manual).", "Always freeze flat: a tilted tub can damage the blade.", "Process it straight out of the freezer."]
+    }
+  }
+]

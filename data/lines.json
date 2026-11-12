@@ -93,5 +93,10 @@
     "es": ["¡Guardado!"],
     "ca": ["Desat!"],
     "en": ["Saved!"]
+  },
+  "exported": {
+    "es": ["¡Copia de seguridad lista!"],
+    "ca": ["Còpia de seguretat a punt!"],
+    "en": ["Backup ready!"]
   }
 }

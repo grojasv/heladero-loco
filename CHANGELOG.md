@@ -2,6 +2,14 @@
 
 All notable changes to Heladero Loco. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.5.0] — 2026-11-12
+### Added
+- **Recipes tab.** Two starting recipes (R1 Mínima, marked untested, and R2 Whey estándar), plus your own: "Guardar como receta" in the builder. One tap loads a recipe into the first empty tub.
+- **Shopping list:** choose how many tubs of each recipe and get the total of every ingredient, with a copy button.
+- **Pantry editor:** correct any ingredient from your own label, add new ingredients (for example a peanut and pistachio cream), or hide the ones you don't use.
+- **Guides and fixes:** the process step by step, two layers, crumbly texture, how to add extras, a batch without washing the blender, and the freezer.
+- **Settings:** number of tubs (7 by default), freezing hours, sound, and a **backup**: export everything to a file and import it back.
+
 ## [0.4.0] — 2026-11-12
 ### Added
 - **Rate a tub** after eating it: texture and taste from 1 to 5, whether it needed a RE-SPIN, and an optional note. Saving it empties the tub.

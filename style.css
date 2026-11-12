@@ -127,8 +127,8 @@ body.talking .hl-mouth { animation: talk 0.22s ease-in-out infinite; transform-b
 .tub.st-ready .tub-sub { color: var(--mint-dark); }
 
 /* ---------- macros ---------- */
-.macros { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 6px; }
-.macros .m { background: var(--card); border: 2px solid var(--edge); border-radius: 12px; text-align: center; padding: 4px 2px 3px; line-height: 1.1; }
+.macros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.macros .m { min-width: 0; overflow: hidden; background: var(--card); border: 2px solid var(--edge); border-radius: 12px; text-align: center; padding: 4px 2px 3px; line-height: 1.1; }
 .macros .m b { display: block; font: 800 1.25rem var(--display); } .macros .m small { font-size: 0.6em; margin-left: 1px; }
 .macros .m span { font-size: 0.66rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.3px; }
 .macros .m.kcal { background: var(--vanilla); color: #2b2140; } .macros .m.kcal span { color: #6d5a2a; }
@@ -277,3 +277,17 @@ sup { color: var(--pink-dark); font-weight: 800; margin-left: 1px; }
 .sprinkles { position: fixed; inset: 0; pointer-events: none; z-index: 50; overflow: hidden; }
 .sprinkles i { position: absolute; top: -20px; width: 7px; height: 18px; border-radius: 4px; border: 1.5px solid #2b2140; animation: sprinkle 1.9s ease-in forwards; }
 @keyframes sprinkle { to { top: 105%; rotate: 540deg; } }
+
+/* ---------- recipes, pantry, guides, settings ---------- */
+.recipe .contents { margin: 10px 0 0; } .recipe .rank-head h3 { font-size: 1.15rem; }
+.list.tight { gap: 8px; }
+.pantry-item, .menu-item { display: flex; align-items: center; gap: 10px; text-decoration: none; padding: 9px 12px; box-shadow: 2px 3px 0 var(--edge); }
+.pantry-item.off { opacity: 0.55; }
+.menu-item { font-size: 1.1rem; padding: 14px; } .menu-item b { flex: 1; font-family: var(--display); } .menu-item span:first-child { font-size: 1.5rem; }
+.form { display: grid; gap: 12px; } .form h2 { font-size: 1rem; margin: 2px 0 -6px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } .grid2.wide { grid-template-columns: 1fr 76px; }
+.form .check { margin: 0; }
+.guide summary { font: 800 1.02rem var(--display); cursor: pointer; }
+.guide ol { margin: 10px 0 2px; padding-left: 20px; display: grid; gap: 6px; font-size: 0.92rem; }
+.diary li { align-items: center; } .diary .stepper b { min-width: 54px; }
+@media (max-width: 350px) { .macros { gap: 4px; } .macros .m span { text-transform: none; letter-spacing: 0; font-size: 0.6rem; } .bench { gap: 8px; padding: 8px; } }

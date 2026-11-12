@@ -1,0 +1,37 @@
+[
+  {
+    "id": "minima",
+    "n": 1,
+    "name": { "es": "Mínima", "ca": "Mínima", "en": "Minimal" },
+    "tested": false,
+    "note": {
+      "es": "Sin probar. La Total Protein Zero es una mezcla de suero, colágeno y caseína, no caseína pura: sin xantana puede separarse en dos capas.",
+      "ca": "Sense provar. La Total Protein Zero és una barreja de sèrum, col·lagen i caseïna, no caseïna pura: sense xantana es pot separar en dues capes.",
+      "en": "Untested. Total Protein Zero is a blend of whey, collagen and casein, not pure casein: with no xanthan it may split into two layers."
+    },
+    "mix": [
+      { "ing": "bebida-soja", "amount": 280 },
+      { "ing": "total-protein-zero", "amount": 45, "flavour": "natillas" },
+      { "ing": "platano", "amount": 50 },
+      { "ing": "sal", "amount": 0.5 }
+    ]
+  },
+  {
+    "id": "whey-estandar",
+    "n": 2,
+    "name": { "es": "Whey estándar", "ca": "Whey estàndard", "en": "Whey standard" },
+    "tested": true,
+    "note": {
+      "es": "La xantana mantiene el agua en suspensión mientras congela.",
+      "ca": "La xantana manté l'aigua en suspensió mentre es congela.",
+      "en": "The xanthan keeps the water suspended while it freezes."
+    },
+    "mix": [
+      { "ing": "bebida-soja", "amount": 280 },
+      { "ing": "only-whey-zero", "amount": 45, "flavour": "natillas" },
+      { "ing": "platano", "amount": 50 },
+      { "ing": "goma-xantana", "amount": 0.75 },
+      { "ing": "sal", "amount": 0.5 }
+    ]
+  }
+]
