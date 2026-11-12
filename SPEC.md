@@ -27,10 +27,10 @@ Not nutrition or medical advice. Macros are computed from label data, never type
 | Pantry | Seeded from the Gemini chat and the labels, **editable in the app** (add, edit, hide). **No stock quantities in v1.** |
 | Builder | A fridge-styled screen: tap an ingredient, set grams or ml with a stepper. No drag and drop. |
 | Rating | **Texture 1–5 + taste 1–5**, plus an optional note and a "needed RE-SPIN" tick. |
-| Learning | **Ranked history:** past mixes sorted by score, each with "repeat this one". No insights in v1. |
+| Learning | **Ranked history:** past mixes sorted by score, each with "repeat this one". **What works** (0.6.0): average texture, taste and RE-SPIN share of every tub that had a given protein, flavour, extra, or a stabiliser, whatever the amounts. |
 | Copy macros | One line: `Tarrina 3 · 372 kcal · P 49 · C 15 · G 12`. |
 | Machine | Ninja CREAMi NC302EU: tubs of **473 ml**; the EU panel says **LIGHT ICE CREAM**, **EXTRAS** and **RE-SPIN** (the Gemini chat used the US names LITE ICE CREAM and MIX-IN). Freeze at least 24 h; bases between -12 °C and -25 °C. The MAX FILL line is about 400 ml (Guille, 2026-11-12; Ninja does not publish it), and the fill warning uses it. |
-| Backup | Export and import everything as one JSON file, in settings. |
+| Backup | Export and import everything as one JSON file, in settings. The home screen reminds Guille when 5 ratings have no backup (0.6.0); "Luego" waits for 5 more. |
 | Extra screens | Saved recipes, batch shopping total, guides and fixes. |
 | Style | **Retro ice cream lab:** pastel mint, strawberry pink and vanilla cream with a dark ink outline, rounded cartoon type, light and dark. |
 | Animation | Soft and playful: ingredients drop into the tub, frost grows while freezing, a sparkle when ready, the tub spins, the mascot reacts. Honour `prefers-reduced-motion`. |
@@ -38,7 +38,7 @@ Not nutrition or medical advice. Macros are computed from label data, never type
 | Publishing | Guille approved on 2026-11-12: create the public repo, push each release and turn on Pages from slice 1, with the GitHub noreply commit email. |
 | Build | All 5 slices in a row, each checked in the browser at phone sizes; stop only at a real blocker. |
 | Notifications | None. A reliable alert at 24 h needs a server. The tub shows a countdown and a "ready" state. |
-| Later | Stock quantities, insights per protein and per extra, portions, a daily macro total. |
+| Later | Stock quantities, portions, a daily macro total. |
 
 ## The tub cycle
 
@@ -118,10 +118,13 @@ casein. The Gemini chat called it "Total Casein Zero" and built the "no xanthan"
 - the app treats it as a **blend**, and the "no stabiliser" warning stays on for it until Guille's ratings say otherwise;
 - recipe R1 (no xanthan) is seeded as **untested**.
 
-The other ingredients were looked up the same day. None comes from the product's own label, so all show a "?"
-(`confirmed: false`) except banana and salt: the soy drink (Aldi) is from Open Food Facts; Maizena Potax and Valor
-cocoa from third-party label copies; Greek yogurt, the nut creams and the nuts are generic USDA values, and the
-pistachio cream uses roasted pistachios as a stand-in. Guille corrects them in the pantry from his own labels.
+The other ingredients show a "?" (`confirmed: false`) except banana and salt. Since 0.6.0 they are ALDI Spain
+products, as Guille asked, taken from copies of the label because aldi.es shows no nutrition tables to a script:
+- Open Food Facts: soy drink, crema suave de cacahuete, crema de avellana, cacahuetes tostados sin sal, High Protein
+  natural yogurt (ALDI has no 0% Greek yogurt on record, so it replaces "Yogur griego 0%").
+- FatSecret: crema de pistacho y cacahuete (replaces the 100% pistachio cream; the pistachio share is not known),
+  avellanas tostadas, cacao puro 100%.
+- Not sold at ALDI or not found: xanthan gum and Maizena Potax keep their third-party values.
 
 ## Seeded recipes (from the Gemini chat)
 - **R1 Mínima** (untested): 280 ml soy drink, 45 g Total Protein Zero, 50 g banana, a pinch of salt.

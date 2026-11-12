@@ -291,3 +291,8 @@ sup { color: var(--pink-dark); font-weight: 800; margin-left: 1px; }
 .guide ol { margin: 10px 0 2px; padding-left: 20px; display: grid; gap: 6px; font-size: 0.92rem; }
 .diary li { align-items: center; } .diary .stepper b { min-width: 54px; }
 @media (max-width: 350px) { .macros { gap: 4px; } .macros .m span { text-transform: none; letter-spacing: 0; font-size: 0.6rem; } .bench { gap: 8px; padding: 8px; } }
+
+/* insights and the backup nudge */
+.sub { font: 800 0.95rem var(--display); margin: 12px 2px 6px; }
+.insight .score { font-size: 1.15rem; } .insight .score.few { opacity: 0.55; }
+.nudge { margin-top: 14px; background: var(--vanilla); color: #2b2140; } .nudge p { margin: 0 0 8px; font-weight: 800; }

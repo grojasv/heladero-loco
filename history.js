@@ -25,6 +25,18 @@
     plainMix: { es: 'Mezcla sin proteína', ca: 'Barreja sense proteïna', en: 'Mix with no protein' },
     delAsk: { es: '¿Borrar esta valoración?', ca: 'Vols esborrar aquesta valoració?', en: 'Delete this rating?' },
     respinShort: { es: 'RE-SPIN', ca: 'RE-SPIN', en: 'RE-SPIN' },
+    insights: { es: 'Qué funciona', ca: 'Què funciona', en: 'What works' },
+    insightsHint: { es: 'Media de todas las tarrinas que llevan cada cosa. Con pocas tarrinas, es solo una pista.', ca: 'Mitjana de totes les terrines que porten cada cosa. Amb poques terrines, només és una pista.', en: 'Average of every tub that had each thing. With few tubs it is only a hint.' },
+    gProtein: { es: 'Por proteína', ca: 'Per proteïna', en: 'By protein' },
+    gFlavour: { es: 'Por sabor', ca: 'Per gust', en: 'By flavour' },
+    gExtra: { es: 'Por extra', ca: 'Per extra', en: 'By extra' },
+    gStab: { es: 'Estabilizante', ca: 'Estabilitzant', en: 'Stabiliser' },
+    withStab: { es: 'Con estabilizante', ca: 'Amb estabilitzant', en: 'With a stabiliser' },
+    noStab: { es: 'Sin estabilizante', ca: 'Sense estabilitzant', en: 'No stabiliser' },
+    noExtra: { es: 'Sin extras', ca: 'Sense extres', en: 'No extras' },
+    tubsN: { es: '{n} tarrinas', ca: '{n} terrines', en: '{n} tubs' },
+    tubs1: { es: '1 tarrina', ca: '1 terrina', en: '1 tub' },
+    respinPct: { es: 'RE-SPIN {p}%', ca: 'RE-SPIN {p}%', en: 'RE-SPIN {p}%' },
     topMix: { es: 'Top: {name}', ca: 'Top: {name}', en: 'Top: {name}' },
   });
   HL.tabs.push({ id: 'history', hash: '#/history', icon: '🏆', label: 'tabHistory' });
@@ -57,6 +69,42 @@
       score: avg(g.entries, (e) => (e.texture + e.taste) / 2),
     })).sort((a, b) => b.score - a.score || b.n - a.n);
   }
+  // What works: average scores of every tub that had a given protein, flavour, extra, or a stabiliser.
+  // A tub counts once per row, whatever the amounts, so small changes to a mix still add up.
+  function insights() {
+    const p = HL.pantry();
+    const groups = { gProtein: new Map(), gFlavour: new Map(), gExtra: new Map(), gStab: new Map() };
+    for (const e of readLog()) {
+      const seen = new Set();
+      const add = (g, key, label) => {
+        if (seen.has(g + key)) return;
+        seen.add(g + key);
+        if (!groups[g].has(key)) groups[g].set(key, { label, entries: [] });
+        groups[g].get(key).entries.push(e);
+      };
+      let stab = false, extra = false;
+      for (const x of [...(e.mix || []), ...(e.extras || [])]) {
+        const i = p[x.ing];
+        if (!i) continue;
+        if (i.shelf === 'protein') {
+          add('gProtein', x.ing, HL.ingName(i));
+          const fl = i.flavours?.find((f) => f.id === x.flavour);
+          if (fl) add('gFlavour', fl.id, fl.name);
+        } else if (i.shelf === 'stabiliser') stab = true;
+        else if (i.shelf === 'extra') { extra = true; add('gExtra', x.ing, HL.ingName(i)); }
+      }
+      add('gStab', stab ? 'y' : 'n', t(stab ? 'withStab' : 'noStab'));
+      if (!extra) add('gExtra', '-', t('noExtra'));
+    }
+    const avg = (list, f) => list.reduce((s, e) => s + f(e), 0) / list.length;
+    return Object.entries(groups).map(([g, map]) => ({
+      g, rows: [...map.values()].map((r) => ({
+        label: r.label, n: r.entries.length, texture: avg(r.entries, (e) => e.texture), taste: avg(r.entries, (e) => e.taste),
+        score: avg(r.entries, (e) => (e.texture + e.taste) / 2), respin: avg(r.entries, (e) => (e.respin ? 1 : 0)),
+      })).sort((a, b) => b.score - a.score || b.n - a.n),
+    })).filter((x) => x.rows.length);
+  }
+  HL.insights = insights;
   HL.loaders.push(() => ranking().slice(0, 3).map((g) => ({ label: `🏆 ${mixName(g.mix)} (${g.score.toFixed(1)})`, mix: g.mix })));
 
   // ---------- rate ----------
@@ -159,6 +207,11 @@
           <details class="what"><summary>${esc(t('contents'))}</summary>${HL.contents([...g.mix, ...g.extras])}</details>
           <p class="row end"><button type="button" class="btn small mint" data-act="hist-repeat" data-i="${i}">🔁 ${esc(t('repeat'))}</button></p>
         </article>`).join('')}</div>
+        <h2 class="sec">🔬 ${esc(t('insights'))}</h2>
+        <p class="muted hint">${esc(t('insightsHint'))}</p>
+        ${insights().map((x) => `<h3 class="sub">${esc(t(x.g))}</h3><ul class="card diary insight">${x.rows.map((r) => `<li><div><b>${esc(r.label)}</b>
+          <span class="muted">${esc(r.n === 1 ? t('tubs1') : t('tubsN', { n: r.n }))} · ${esc(t('texture'))} ${score1(r.texture)} · ${esc(t('taste'))} ${score1(r.taste)}${r.respin ? ` · ${esc(t('respinPct', { p: Math.round(r.respin * 100) }))}` : ''}</span></div>
+          <span class="score${r.n < 2 ? ' few' : ''}">${score1(r.score)}</span></li>`).join('')}</ul>`).join('')}
         <h2 class="sec">📓 ${esc(t('diary'))}</h2>
         <ul class="card diary">${log.map((e, i) => `<li><div><b>${esc(mixName(e.mix, e.extras))}</b>
           <span class="muted">${esc(HL.dateFmt(e.at))} · ${esc(t('texture'))} ${e.texture} · ${esc(t('taste'))} ${e.taste}${e.respin ? ` · ${esc(t('respinShort'))}` : ''} · ${e.macros?.kcal ?? '?'} kcal</span>

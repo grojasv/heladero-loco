@@ -2,6 +2,15 @@
 
 All notable changes to Heladero Loco. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.6.0] — 2026-11-12
+### Added
+- **What works** in the History tab: the average texture, taste and RE-SPIN share of every tub that had each protein, each flavour, each extra, and with or without a stabiliser. A tub counts whatever the amounts, so small changes to a mix still add up.
+- **Backup reminder:** the home screen tells you when 5 ratings have no backup, with the export button right there. Settings shows the date of the last backup.
+
+### Changed
+- **Pantry macros now come from ALDI products** (Open Food Facts and FatSecret copies of the labels): soy drink, peanut butter, hazelnut butter, roasted peanuts, roasted hazelnuts and pure cocoa. They keep the "?" until checked against the pack.
+- "Crema de pistacho 100%" is now ALDI's **Crema de pistacho y cacahuete**, and "Yogur griego 0%" is now ALDI's **High Protein natural yogurt** (ALDI has no 0% Greek yogurt on record).
+
 ## [0.5.1] — 2026-11-12
 ### Changed
 - The overfill warning now fires at the **MAX FILL line, 400 ml**, instead of the full 473 ml of the tub.

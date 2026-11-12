@@ -52,6 +52,10 @@
     import: { es: 'Importar archivo', ca: 'Importa un fitxer', en: 'Import file' },
     importAsk: { es: 'Esto sustituye todos los datos de este teléfono por los del archivo ({n} valoraciones). ¿Seguir?', ca: 'Això substitueix totes les dades d’aquest telèfon per les del fitxer ({n} valoracions). Continuar?', en: 'This replaces all the data on this phone with the file ({n} ratings). Continue?' },
     importBad: { es: 'Ese archivo no es una copia de Heladero Loco.', ca: 'Aquest fitxer no és una còpia d’Heladero Loco.', en: 'That file is not a Heladero Loco backup.' },
+    lastBackup: { es: 'Última copia: {d}', ca: 'Última còpia: {d}', en: 'Last backup: {d}' },
+    neverBackup: { es: 'Aún no has hecho ninguna copia.', ca: 'Encara no has fet cap còpia.', en: 'You have not made a backup yet.' },
+    backupNudge: { es: 'Tienes {n} valoraciones sin copia de seguridad.', ca: 'Tens {n} valoracions sense còpia de seguretat.', en: 'You have {n} ratings with no backup.' },
+    later: { es: 'Luego', ca: 'Després', en: 'Later' },
     exported: { es: 'Archivo exportado.', ca: 'Fitxer exportat.', en: 'File exported.' },
   });
   HL.tabs.push({ id: 'recipes', hash: '#/recipes', icon: '📖', label: 'tabRecipes' }, { id: 'more', hash: '#/more', icon: '⚙️', label: 'tabMore' });
@@ -204,6 +208,17 @@
 
   // ---------- settings and backup ----------
   const KEYS = ['tubs', 'log', 'recipes', 'recipeSeq', 'pantry', 'ingSeq', 'settings', 'lastFlavour', 'lang'];
+  // Ratings made since the last export. The home screen nudges at 5, and again 5 ratings after a "later".
+  const NUDGE_EVERY = 5;
+  const unsaved = () => { const at = store.get('backupAt', ''); return HL.readLog().filter((e) => e.at > at).length; };
+  (HL.homeExtras ||= []).push(() => {
+    const n = unsaved();
+    if (n < NUDGE_EVERY || n < store.get('backupSnooze', 0)) return '';
+    return `<section class="card nudge"><p>💾 ${esc(t('backupNudge', { n }))}</p>
+      <div class="row"><button type="button" class="btn small mint" data-act="backup-export">⬇️ ${esc(t('export'))}</button>
+        <button type="button" class="btn small ghost" data-act="backup-later">${esc(t('later'))}</button></div></section>`;
+  });
+  acts['backup-later'] = () => { store.set('backupSnooze', unsaved() + NUDGE_EVERY); play('tap'); HL.route(); };
   function drawSettings() {
     const s = HL.settings(), muted = window.Sound?.muted;
     const row = (label, key, value) => `<li><div><b>${esc(label)}</b></div><span class="stepper"><button type="button" data-act="set-step" data-key="${key}" data-dir="-1">−</button><b>${value}</b><button type="button" data-act="set-step" data-key="${key}" data-dir="1">+</button></span></li>`;
@@ -212,6 +227,7 @@
         <li><div><b>${esc(t('sSound'))}</b></div><button type="button" class="btn small ${muted ? 'ghost' : 'mint'}" data-act="set-sound">${muted ? '🔇' : '🔊'} ${esc(t(muted ? 'off' : 'on'))}</button></li></ul>
       <h2 class="sec">💾 ${esc(t('backup'))}</h2>
       <section class="card"><p class="muted" style="margin-top:0">${esc(t('backupHint'))}</p>
+        <p><b>${esc(store.get('backupAt') ? t('lastBackup', { d: HL.dateFmt(store.get('backupAt')) }) : t('neverBackup'))}</b></p>
         <div class="row"><button type="button" class="btn small mint" data-act="backup-export">⬇️ ${esc(t('export'))}</button>
           <label class="btn small ghost">⬆️ ${esc(t('import'))}<input type="file" id="importFile" accept="application/json,.json" hidden></label></div></section>`;
     $('importFile').addEventListener('change', async (e) => {
@@ -221,6 +237,7 @@
       if (parsed?.app !== 'heladero-loco' || typeof parsed.data !== 'object') { play('oops'); alert(t('importBad')); return; }
       if (!confirm(t('importAsk', { n: (parsed.data.log || []).length }))) return;
       for (const k of KEYS) { if (k in parsed.data) store.set(k, parsed.data[k]); else { try { localStorage.removeItem('heladero.' + k); } catch { /* private mode */ } } }
+      store.set('backupAt', new Date().toISOString()); // the file just read is the backup
       location.hash = '#/'; location.reload();
     });
   }
@@ -242,7 +259,10 @@
     const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `heladero-loco-${new Date().toISOString().slice(0, 10)}.json` });
     document.body.append(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-    play('pop'); HL.say('exported', {}, { quiet: true });
+    store.set('backupAt', new Date().toISOString());
+    try { localStorage.removeItem('heladero.backupSnooze'); } catch { /* private mode */ }
+    play('pop'); HL.route();
+    setTimeout(() => HL.say('exported', {}, { quiet: true }), 80);
   };
 
   // ---------- the "more" menu ----------

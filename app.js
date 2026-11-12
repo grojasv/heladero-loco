@@ -2,7 +2,7 @@
 // No build step. Feature screens live in their own files and register themselves on window.HL:
 // HL.routes[name] = { render(arg), tab }, HL.acts[name] = (el, event) => …, HL.tabs.push({ … }).
 window.HL = (() => {
-  const VERSION = '0.5.1'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.6.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOCALE = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const DEFAULTS = { tubs: 7, freezeHours: 24 };
@@ -209,7 +209,8 @@ window.HL = (() => {
         <div class="bubble" id="bubble">${esc(line(count('ready') ? 'readyHello' : 'hello'))}</div>
       </section>
       <p class="counts">${esc(t('counts', { f: count('freezing'), r: count('ready'), e: count('empty') }))}</p>
-      <div class="tubs" id="tubs">${list.map(tubCard).join('')}</div>`;
+      <div class="tubs" id="tubs">${list.map(tubCard).join('')}</div>
+      ${(window.HL.homeExtras || []).map((f) => f()).join('')}`;
     clearJustReady();
   }
   routes.home = { render: renderHome, tab: 'home' };

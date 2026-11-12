@@ -17,7 +17,7 @@
     },
     "default": 280,
     "step": 10,
-    "source": "https://world.openfoodfacts.org/product/24038072/",
+    "source": "https://es.openfoodfacts.org/producto/24038072",
     "confirmed": false
   },
   "only-whey-zero": {
@@ -258,22 +258,22 @@
   "yogur-griego-0": {
     "n": 7,
     "name": {
-      "es": "Yogur griego 0%",
-      "ca": "Iogurt grec 0%",
-      "en": "Greek yogurt 0%"
+      "es": "Yogur proteico natural 0%",
+      "ca": "Iogurt proteic natural 0%",
+      "en": "High-protein plain yogurt 0%"
     },
     "emoji": "🥣",
     "shelf": "base",
     "unit": "g",
     "per100": {
-      "kcal": 59,
-      "protein": 10.2,
-      "carbs": 3.6,
-      "fat": 0.39
+      "kcal": 55,
+      "protein": 9,
+      "carbs": 3.8,
+      "fat": 0.2
     },
     "default": 100,
     "step": 10,
-    "source": "https://fdc.nal.usda.gov/food-details/170894/nutrients",
+    "source": "https://es.openfoodfacts.org/producto/2004060134666/high-protein-yogur-milsani-aldi",
     "confirmed": false
   },
   "maizena-potax": {
@@ -305,22 +305,22 @@
   "cacao-puro": {
     "n": 9,
     "name": {
-      "es": "Cacao puro desgrasado",
-      "ca": "Cacau pur desgreixat",
-      "en": "Defatted cocoa powder"
+      "es": "Cacao puro 100%",
+      "ca": "Cacau pur 100%",
+      "en": "Pure cocoa powder 100%"
     },
     "emoji": "🍫",
     "shelf": "other",
     "unit": "g",
     "per100": {
-      "kcal": 375,
-      "protein": 25.5,
-      "carbs": 16.3,
-      "fat": 16
+      "kcal": 327,
+      "protein": 24,
+      "carbs": 16,
+      "fat": 11
     },
     "default": 5,
     "step": 1,
-    "source": "https://www.fatsecret.es/calor%C3%ADas-nutrici%C3%B3n/valor/cacao-desgrasado/100g",
+    "source": "https://www.fatsecret.es/calor%C3%ADas-nutrici%C3%B3n/aldi/cacao-puro-100-natural/100g",
     "confirmed": false
   },
   "crema-cacahuete": {
@@ -334,14 +334,14 @@
     "shelf": "extra",
     "unit": "g",
     "per100": {
-      "kcal": 598,
-      "protein": 22.2,
-      "carbs": 22.3,
-      "fat": 51.4
+      "kcal": 665,
+      "protein": 28,
+      "carbs": 15.3,
+      "fat": 52.5
     },
     "default": 15,
     "step": 5,
-    "source": "https://fdc.nal.usda.gov/food-details/172470/nutrients",
+    "source": "https://es.openfoodfacts.org/producto/24087858",
     "confirmed": false
   },
   "crema-avellana": {
@@ -362,28 +362,28 @@
     },
     "default": 15,
     "step": 5,
-    "source": "https://world.openfoodfacts.org/product/8437016495797",
+    "source": "https://es.openfoodfacts.org/producto/2034060072323/crema-de-avellana-aldi",
     "confirmed": false
   },
   "crema-pistacho": {
     "n": 12,
     "name": {
-      "es": "Crema de pistacho 100%",
-      "ca": "Crema de festuc 100%",
-      "en": "Pistachio cream 100%"
+      "es": "Crema de pistacho y cacahuete",
+      "ca": "Crema de festuc i cacauet",
+      "en": "Pistachio and peanut butter"
     },
     "emoji": "💚",
     "shelf": "extra",
     "unit": "g",
     "per100": {
-      "kcal": 572,
-      "protein": 21,
-      "carbs": 28.3,
-      "fat": 45.8
+      "kcal": 585,
+      "protein": 24,
+      "carbs": 17,
+      "fat": 45
     },
     "default": 15,
     "step": 5,
-    "source": "https://fdc.nal.usda.gov/food-details/170185/nutrients",
+    "source": "https://www.fatsecret.es/calor%C3%ADas-nutrici%C3%B3n/aldi/crema-de-pistacho-y-cacahuete/100g",
     "confirmed": false
   },
   "cacahuetes": {
@@ -397,14 +397,14 @@
     "shelf": "extra",
     "unit": "g",
     "per100": {
-      "kcal": 587,
-      "protein": 24.4,
-      "carbs": 21.3,
-      "fat": 49.7
+      "kcal": 616,
+      "protein": 27,
+      "carbs": 9.6,
+      "fat": 50
     },
     "default": 10,
     "step": 5,
-    "source": "https://fdc.nal.usda.gov/food-details/173806/nutrients",
+    "source": "https://es.openfoodfacts.org/producto/24045209/cacahuetes-con-cascara-tostados-sin-sal-aldi",
     "confirmed": false
   },
   "avellanas": {
@@ -418,14 +418,14 @@
     "shelf": "extra",
     "unit": "g",
     "per100": {
-      "kcal": 646,
-      "protein": 15,
-      "carbs": 17.6,
-      "fat": 62.4
+      "kcal": 712,
+      "protein": 17,
+      "carbs": 3.8,
+      "fat": 68
     },
     "default": 10,
     "step": 5,
-    "source": "https://fdc.nal.usda.gov/food-details/170583/nutrients",
+    "source": "https://www.fatsecret.es/calor%C3%ADas-nutrici%C3%B3n/aldi/avellanas-tostadas/100g",
     "confirmed": false
   }
 }
