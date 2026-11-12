@@ -2,11 +2,11 @@
 // No build step. Feature screens live in their own files and register themselves on window.HL:
 // HL.routes[name] = { render(arg), tab }, HL.acts[name] = (el, event) => …, HL.tabs.push({ … }).
 window.HL = (() => {
-  const VERSION = '0.5.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.5.1'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOCALE = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const DEFAULTS = { tubs: 7, freezeHours: 24 };
-  const TUB_ML = 473; // NC302EU tub volume (see SPEC § Ninja)
+  const FILL_ML = 400; // MAX FILL line of the NC302EU tub (473 ml), from Guille 2026-11-12
 
   const T = {
     tabTubs: { es: 'Tarrinas', ca: 'Terrines', en: 'Tubs' },
@@ -129,7 +129,7 @@ window.HL = (() => {
     return [...new Set(names)].join(' + ');
   }
   function tubSvg(tub, info, slot, opts = {}) {
-    const level = opts.level ?? (tub.state === 'empty' ? 0 : Math.min(1, mixVolume(tub.mix) / TUB_ML || 0.8));
+    const level = opts.level ?? (tub.state === 'empty' ? 0 : Math.min(1, mixVolume(tub.mix) / FILL_ML || 0.8));
     const top = 114 - 90 * level, color = opts.color || tubColor(tub), id = `tubclip${slot}${opts.k || ''}`;
     const st = info.view;
     return `<svg viewBox="0 0 100 124" class="tubsvg st-${st}" aria-hidden="true">
@@ -343,7 +343,7 @@ window.HL = (() => {
   });
 
   return {
-    VERSION, TUB_ML, T, t, esc, $, view, store, settings, data, pantry, ing, ingName, macros, macroLine, macroBar, amountText, mixVolume,
+    VERSION, FILL_ML, T, t, esc, $, view, store, settings, data, pantry, ing, ingName, macros, macroLine, macroBar, amountText, mixVolume,
     tubs, saveTubs, setTub, tubInfo, tubSvg, tubColor, flavourName, leftText, mascot, line, say, copyText, routes, acts, tabs, go, route,
     dateFmt, timeFmt, num, r0, get lang() { return lang; },
   };

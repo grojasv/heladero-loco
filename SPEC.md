@@ -29,7 +29,7 @@ Not nutrition or medical advice. Macros are computed from label data, never type
 | Rating | **Texture 1–5 + taste 1–5**, plus an optional note and a "needed RE-SPIN" tick. |
 | Learning | **Ranked history:** past mixes sorted by score, each with "repeat this one". No insights in v1. |
 | Copy macros | One line: `Tarrina 3 · 372 kcal · P 49 · C 15 · G 12`. |
-| Machine | Ninja CREAMi NC302EU: tubs of **473 ml**; the EU panel says **LIGHT ICE CREAM**, **EXTRAS** and **RE-SPIN** (the Gemini chat used the US names LITE ICE CREAM and MIX-IN). Freeze at least 24 h; bases between -12 °C and -25 °C. The volume at the MAX FILL line is not published, so the fill warning uses the full 473 ml. |
+| Machine | Ninja CREAMi NC302EU: tubs of **473 ml**; the EU panel says **LIGHT ICE CREAM**, **EXTRAS** and **RE-SPIN** (the Gemini chat used the US names LITE ICE CREAM and MIX-IN). Freeze at least 24 h; bases between -12 °C and -25 °C. The MAX FILL line is about 400 ml (Guille, 2026-11-12; Ninja does not publish it), and the fill warning uses it. |
 | Backup | Export and import everything as one JSON file, in settings. |
 | Extra screens | Saved recipes, batch shopping total, guides and fixes. |
 | Style | **Retro ice cream lab:** pastel mint, strawberry pink and vanilla cream with a dark ink outline, rounded cartoon type, light and dark. |
@@ -58,7 +58,7 @@ clock, not stored. The 24 h is a setting.
 - **Tubs (home):** the tubs in their states, the mascot's line, and a count such as "6 llenas · 2 listas".
 - **Builder:** the fridge with ingredients by shelf (base, protein, fruit, stabiliser, other); the tub on the side
   fills as ingredients go in; macros update live. Warnings (never blocking):
-  - the mix goes past the tub's fill line (rough check: grams + ml against the tub volume);
+  - the mix goes past the tub's fill line (rough check: grams + ml against the 400 ml MAX FILL line);
   - a whey-only protein with no stabiliser (the separation seen in the Gemini chat).
   "Igual que la tarrina N" and "Guardar receta" are here. "Llenar varias" applies the same mix to several empty tubs.
 - **Spin:** program for the mix, the RE-SPIN tip, the extras shelf (nut creams, nuts) with the EXTRAS step, base

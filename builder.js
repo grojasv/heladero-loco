@@ -16,7 +16,7 @@
     shOther: { es: 'Otros', ca: 'Altres', en: 'Other' },
     shExtra: { es: 'Extras', ca: 'Extres', en: 'Extras' },
     volume: { es: '{v} de {max} ml', ca: '{v} de {max} ml', en: '{v} of {max} ml' },
-    warnOver: { es: 'Te pasas de la tarrina ({max} ml). Quita algo o rebosará.', ca: 'Passes de la terrina ({max} ml). Treu alguna cosa o vessarà.', en: 'This is more than the tub holds ({max} ml). Remove something or it will overflow.' },
+    warnOver: { es: 'Te pasas de la línea MAX FILL ({max} ml). Quita algo o rebosará.', ca: 'Passes de la línia MAX FILL ({max} ml). Treu alguna cosa o vessarà.', en: 'This is past the MAX FILL line ({max} ml). Remove something or it will overflow.' },
     warnStab: { es: 'Sin espesante, la mezcla puede separarse en dos capas al congelar. Añade goma xantana.', ca: 'Sense espessidor, la barreja es pot separar en dues capes en congelar-se. Afegeix goma xantana.', en: 'With no stabiliser the mix can split into two layers while freezing. Add xanthan gum.' },
     warnUnconfirmed: { es: '? = dato genérico, sin confirmar con tu etiqueta. Corrígelo en la despensa.', ca: '? = dada genèrica, sense confirmar amb la teva etiqueta. Corregeix-la al rebost.', en: '? = generic value, not checked against your label. Fix it in the pantry.' },
     freeze: { es: 'Al congelador', ca: 'Al congelador', en: 'Into the freezer' },
@@ -126,7 +126,7 @@
   const emptySlots = () => HL.tubs().map((x, i) => (x.state === 'empty' ? i : -1)).filter((i) => i >= 0);
   function warnings() {
     const p = HL.pantry(), out = [], vol = HL.mixVolume(draft.mix);
-    if (vol > HL.TUB_ML) out.push(['over', t('warnOver', { max: HL.TUB_ML })]);
+    if (vol > HL.FILL_ML) out.push(['over', t('warnOver', { max: HL.FILL_ML })]);
     const prots = draft.mix.filter((x) => p[x.ing]?.shelf === 'protein');
     if (prots.length && !prots.some((x) => p[x.ing].protein?.kind === 'casein') && !draft.mix.some((x) => p[x.ing]?.shelf === 'stabiliser')) out.push(['stab', t('warnStab')]);
     if (draft.mix.some((x) => p[x.ing]?.confirmed === false)) out.push(['q', t('warnUnconfirmed')]);
@@ -134,7 +134,7 @@
   }
   function draw(why, ingAdded) {
     const slot = draft.slot, vol = HL.mixVolume(draft.mix), m = HL.macros(draft.mix);
-    const level = Math.min(1, vol / HL.TUB_ML), free = emptySlots(), maxCount = Math.max(1, free.length);
+    const level = Math.min(1, vol / HL.FILL_ML), free = emptySlots(), maxCount = Math.max(1, free.length);
     draft.count = Math.min(draft.count, maxCount);
     const fake = { state: 'frozen', mix: draft.mix };
     const loads = HL.loaders.flatMap((f) => f()).filter((l) => l.mix?.length);
@@ -146,8 +146,8 @@
         <div class="bench-tub${why === 'add' ? ' drop' : ''}">${ingAdded ? `<span class="falling" aria-hidden="true">${esc(ingAdded.emoji || '🥄')}</span>` : ''}
           ${HL.tubSvg(fake, { view: 'frozen', progress: 0 }, slot, { level, k: 'b' })}</div>
         <div class="bench-side">${HL.macroBar(m).replace('class="macros"', `class="macros${why ? ' bump' : ''}"`)}
-          <div class="meter${vol > HL.TUB_ML ? ' over' : ''}"><i style="width:${Math.min(100, (vol / HL.TUB_ML) * 100).toFixed(0)}%"></i></div>
-          <p class="meter-text">${esc(t('volume', { v: HL.r0(vol), max: HL.TUB_ML }))}</p></div>
+          <div class="meter${vol > HL.FILL_ML ? ' over' : ''}"><i style="width:${Math.min(100, (vol / HL.FILL_ML) * 100).toFixed(0)}%"></i></div>
+          <p class="meter-text">${esc(t('volume', { v: HL.r0(vol), max: HL.FILL_ML }))}</p></div>
       </section>
       ${warns.map(([k, text]) => `<p class="warn w-${k}">${k === 'q' ? '' : '⚠️ '}${esc(text)}</p>`).join('')}
       <h2 class="sec">${esc(t('inTub'))}${draft.mix.length ? ` <button type="button" class="btn small ghost" data-act="build-clear">${esc(t('clear'))}</button>` : ''}</h2>
@@ -159,7 +159,7 @@
         ${(HL.buildExtras || []).map((f) => f(draft)).join('')}
         <button type="button" class="btn mint block" data-act="build-freeze"${draft.mix.length ? '' : ' disabled'}>❄️ ${esc(t('freeze'))}</button>
       </div>`;
-    const over = vol > HL.TUB_ML;
+    const over = vol > HL.FILL_ML;
     if (over && !wasOver) { play('oops'); HL.say('overfill'); }
     wasOver = over;
   }
@@ -170,7 +170,7 @@
       if (!tub || tub.state !== 'empty') { HL.go('#/'); return; }
       const fresh = !draft || draft.slot !== slot;
       if (fresh) draft = { slot, mix: [], count: 1 };
-      wasOver = HL.mixVolume(draft.mix) > HL.TUB_ML;
+      wasOver = HL.mixVolume(draft.mix) > HL.FILL_ML;
       picker.open(draft.mix, draw);
       draw();
       if (fresh) HL.say('build', {}, { quiet: true });

@@ -2,6 +2,10 @@
 
 All notable changes to Heladero Loco. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.5.1] — 2026-11-12
+### Changed
+- The overfill warning now fires at the **MAX FILL line, 400 ml**, instead of the full 473 ml of the tub.
+
 ## [0.5.0] — 2026-11-12
 ### Added
 - **Recipes tab.** Two starting recipes (R1 Mínima, marked untested, and R2 Whey estándar), plus your own: "Guardar como receta" in the builder. One tap loads a recipe into the first empty tub.
