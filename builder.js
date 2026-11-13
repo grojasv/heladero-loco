@@ -85,7 +85,9 @@
       target.list.push(item);
     }
     play(have ? 'tick' : 'plop');
+    const from = el.getBoundingClientRect();
     target.onChange('add', i);
+    HL.fx?.fly(i.emoji, from);
   };
   acts['ing-step'] = (el) => {
     const x = target?.list.find((y) => y.ing === el.dataset.ing), i = HL.ing(el.dataset.ing); if (!x || !i) return;
@@ -114,7 +116,7 @@
     return HL.tubs().map((tub, i) => ({ tub, i })).filter(({ tub }) => tub.state !== 'empty' && tub.mix?.length && !seen.has(HL.sig(tub.mix)) && seen.add(HL.sig(tub.mix)))
       .map(({ tub, i }) => ({ label: `🍦 ${t('sameAs', { n: i + 1 })}`, mix: tub.mix }));
   }];
-  let draft = null, wasOver = false;
+  let draft = null, wasOver = false, shown = null; // shown: the macros on screen, to roll the numbers from
   // HL.startBuild(mix) opens the builder on the first empty tub with that mix loaded. Returns false if none is empty.
   HL.startBuild = (mix) => {
     const slot = HL.tubs().findIndex((x) => x.state === 'empty');
@@ -143,7 +145,8 @@
       <a class="back" href="#/">${esc(t('back'))}</a>
       <h1 class="title">${esc(t('build', { n: slot + 1 }))}</h1>
       <section class="bench card">
-        <div class="bench-tub${why === 'add' ? ' drop' : ''}">${ingAdded ? `<span class="falling" aria-hidden="true">${esc(ingAdded.emoji || '🥄')}</span>` : ''}
+        <span class="bench-face" aria-hidden="true">${window.Heladero ? window.Heladero.head(vol > HL.FILL_ML ? 'freeze' : m.protein >= 40 ? 'cheer' : 'idle') : ''}</span>
+        <div class="bench-tub${why === 'step' || why === 'flavour' ? ' slosh' : ''}${why === 'add' && !HL.fx ? ' drop' : ''}">
           ${HL.tubSvg(fake, { view: 'frozen', progress: 0 }, slot, { level, k: 'b' })}</div>
         <div class="bench-side">${HL.macroBar(m).replace('class="macros"', `class="macros${why ? ' bump' : ''}"`)}
           <div class="meter${vol > HL.FILL_ML ? ' over' : ''}"><i style="width:${Math.min(100, (vol / HL.FILL_ML) * 100).toFixed(0)}%"></i></div>
@@ -159,6 +162,8 @@
         ${(HL.buildExtras || []).map((f) => f(draft)).join('')}
         <button type="button" class="btn mint block" data-act="build-freeze"${draft.mix.length ? '' : ' disabled'}>❄️ ${esc(t('freeze'))}</button>
       </div>`;
+    if (shown && why) view.querySelectorAll('.bench .macros .m b').forEach((b, i) => { const k = ['kcal', 'protein', 'carbs', 'fat'][i]; HL.fx?.count(b, shown[k], m[k]); });
+    shown = m;
     const over = vol > HL.FILL_ML;
     if (over && !wasOver) { play('oops'); HL.say('overfill'); }
     wasOver = over;
@@ -172,6 +177,7 @@
       if (fresh) draft = { slot, mix: [], count: 1 };
       wasOver = HL.mixVolume(draft.mix) > HL.FILL_ML;
       picker.open(draft.mix, draw);
+      shown = null;
       draw();
       if (fresh) HL.say('build', {}, { quiet: true });
     },

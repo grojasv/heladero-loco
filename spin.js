@@ -23,6 +23,7 @@
     noExtras: { es: 'Sin extras. Toca uno abajo para añadirlo.', ca: 'Sense extres. Toca’n un a sota per afegir-lo.', en: 'No extras. Tap one below to add it.' },
     baseLine: { es: 'Base', ca: 'Base', en: 'Base' },
     finalMacros: { es: 'Macros finales', ca: 'Macros finals', en: 'Final macros' },
+    running: { es: 'Procesando…', ca: 'Processant…', en: 'Spinning…' },
     spunDone: { es: '¡Helado hecho!', ca: 'Gelat fet!', en: 'Ice cream done!' },
   });
 
@@ -92,7 +93,11 @@
       <a class="back" href="#/">${esc(t('back'))}</a>
       <h1 class="title">${esc(t('spinTitle', { n: slot + 1 }))}</h1>
       <section class="card machine">
-        <div class="spin-tub" id="spinTub">${HL.tubSvg(tub, { view: 'ready', progress: 1 }, slot, { k: 's' })}</div>
+        <div class="ninja" id="ninja">
+          <div class="ninja-head"><span class="led on">LIGHT ICE CREAM</span><span class="led">RE-SPIN</span><span class="led${draft.extras.length ? ' on' : ''}">EXTRAS</span></div>
+          <div class="ninja-bay"><i class="blade" aria-hidden="true"></i>${HL.tubSvg(tub, { view: 'ready', progress: 1 }, slot, { k: 's' })}</div>
+          <div class="ninja-foot"></div>
+        </div>
         <ol class="steps"><li>${t('step1')}</li><li>${t('step2')}</li>${draft.extras.length ? `<li>${t('step3')}</li>` : ''}</ol>
       </section>
       <h2 class="sec">${esc(t('extras'))}</h2>
@@ -125,13 +130,25 @@
     if (!draft) return;
     const slot = draft.slot, tub = HL.tubs()[slot];
     el.disabled = true;
-    document.getElementById('spinTub')?.classList.add('spinning');
+    el.textContent = `🌀 ${t('running')}`;
+    const calm = HL.fx?.calm(), machine = document.getElementById('ninja');
+    const done = { ...tub, state: 'spun', extras: draft.extras.map((x) => ({ ...x })), spunAt: Date.now() };
+    machine?.scrollIntoView({ block: 'center', behavior: calm ? 'auto' : 'smooth' });
+    machine?.classList.add('run');
     play('whirr');
+    if (!window.Sound?.muted) { try { navigator.vibrate?.([70, 50, 70, 50, 70, 50, 400]); } catch { /* no vibration */ } }
+    // The lid comes off: the tub shows its swirl and toppings for a moment before the rating.
     setTimeout(() => {
-      HL.setTub(slot, { ...tub, state: 'spun', extras: draft.extras.map((x) => ({ ...x })), spunAt: Date.now() });
+      if (!machine?.isConnected) return;
+      machine.classList.remove('run'); machine.classList.add('done');
+      machine.querySelector('.ninja-bay').innerHTML = HL.tubSvg(done, { view: 'spun', progress: 1 }, slot, { k: 's' });
+      play('chime');
+    }, calm ? 0 : 1500);
+    setTimeout(() => {
+      HL.setTub(slot, done);
       draft = null; forced = -1;
       HL.go(routes.rate ? `#/rate/${slot + 1}` : '#/');
       setTimeout(() => HL.say('spun', {}, { pose: 'cheer' }), 80);
-    }, 1500);
+    }, calm ? 600 : 2500);
   };
 })();

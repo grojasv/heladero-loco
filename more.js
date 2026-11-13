@@ -207,7 +207,7 @@
   };
 
   // ---------- settings and backup ----------
-  const KEYS = ['tubs', 'log', 'recipes', 'recipeSeq', 'pantry', 'ingSeq', 'settings', 'lastFlavour', 'lang'];
+  const KEYS = ['tubs', 'log', 'recipes', 'recipeSeq', 'pantry', 'ingSeq', 'settings', 'lastFlavour', 'lang', 'badges'];
   // Ratings made since the last export. The home screen nudges at 5, and again 5 ratings after a "later".
   const NUDGE_EVERY = 5;
   const unsaved = () => { const at = store.get('backupAt', ''); return HL.readLog().filter((e) => e.at > at).length; };

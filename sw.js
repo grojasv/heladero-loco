@@ -2,8 +2,8 @@
 // Network-first for everything, so a new release is never hidden behind the cache; the cache is only the offline
 // fallback. Bump CACHE when SHELL changes.
 // GitHub Pages sends max-age=600, so fetches use cache: 'no-cache' (revalidate with the ETag; a 304 is cheap).
-const CACHE = 'heladero-loco-v7';
-const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'builder.js', 'spin.js', 'history.js', 'more.js', 'mascot.js', 'sound.js', 'manifest.webmanifest', 'CHANGELOG.md',
+const CACHE = 'heladero-loco-v8';
+const SHELL = ['./', 'index.html', 'style.css', 'app.js', 'fx.js', 'builder.js', 'spin.js', 'history.js', 'more.js', 'mascot.js', 'sound.js', 'manifest.webmanifest', 'CHANGELOG.md',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/apple-touch-icon.png', 'data/lines.json', 'data/ingredients.json', 'data/recipes.json', 'data/guides.json'];
 
 self.addEventListener('install', (e) => {

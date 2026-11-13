@@ -2,6 +2,16 @@
 
 All notable changes to Heladero Loco. Format: [Keep a Changelog](https://keepachangelog.com/), versions: [SemVer](https://semver.org/). New feature = minor, fix or content tweak = patch.
 
+## [0.7.0] — 2026-11-13
+### Added
+- **Intro:** once a day, the lab doors slide open, El Heladero Loco pops up and the name drips in. Tap to skip.
+- **The home screen is a freezer:** tubs sit on frosty shelves with icicles and drifting mist. Ready tubs glow.
+- **Tubs show what is inside:** swirls in the colours of the ingredients, and nuts or nut cream as toppings.
+- **Livelier builder:** ingredients fly from the fridge into the tub and splash, the numbers roll, and the mascot's face reacts to the mix.
+- **The machine:** a panel with the lit program, a blade that comes down, a rumble (and a vibration on the phone), then the finished tub with its swirl.
+- **Scoop tower** when you rate, a **new record** card when a tub beats your best, and **8 badges** in the History tab.
+- The mascot blinks, breathes and looks at where you tap. Tap him five times quickly for a dance.
+
 ## [0.6.0] — 2026-11-12
 ### Added
 - **What works** in the History tab: the average texture, taste and RE-SPIN share of every tub that had each protein, each flavour, each extra, and with or without a stabiliser. A tub counts whatever the amounts, so small changes to a mix still add up.

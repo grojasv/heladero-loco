@@ -72,10 +72,12 @@
       <circle cx="-16" cy="-8" r="10.5" fill="${lens}" stroke="${C.ink}" stroke-width="2"/>
       <circle cx="16" cy="-8" r="10.5" fill="${lens}" stroke="${C.ink}" stroke-width="2"/>
       <rect x="-3" y="-11" width="6" height="6" fill="${C.mintDark}" stroke="${C.ink}" stroke-width="2"/>
+      <g class="hl-look"><g class="hl-pupils">
       <circle cx="-15" cy="-7" r="${cold ? 3 : 4.5}" fill="${C.ink}"/>
       <circle cx="18" cy="-9" r="${cold ? 3 : 2.6}" fill="${C.ink}"/>
       <circle cx="-19" cy="-12" r="2.2" fill="${C.white}"/>
       <circle cx="13" cy="-12" r="2.2" fill="${C.white}"/>
+      </g></g>
       <ellipse cx="0" cy="9" rx="5" ry="4" fill="${cold ? '#9fb7ff' : C.skinDark}" stroke="${C.ink}" stroke-width="2"/>
       ${mouth(pose)}
     </g>`;

@@ -6,6 +6,7 @@ Phone-first app to build protein ice cream tubs for the Ninja CREAMi NC302EU: in
 - `index.html`, `style.css`: the shell and the retro ice cream lab look (tokens on `:root`, light and dark).
 - `app.js`: the core as `window.HL` (storage, languages, data, pantry, macros, tubs, router, mascot lines) and the tubs screen. **`VERSION` here must match `CHANGELOG.md`.**
 - Feature screens register themselves on `HL` (`HL.routes`, `HL.acts`, `HL.tabs`): `builder.js` (fill a tub), `spin.js` (freezing, machine, extras), `history.js` (rating, ranked history), `more.js` (recipes, shopping, pantry, guides, settings).
+- `fx.js`: effects only (intro, flying ingredients, rolling numbers, reward card, mascot eyes and dance). Never changes data; everything is skipped with `prefers-reduced-motion`. `?intro` in the URL forces the intro.
 - `mascot.js`: the mascot as SVG (`Heladero.svg(pose)`, `Heladero.head()`), UMD so `scripts/make-icons.mjs` can reuse it.
 - `sound.js`: `Sound.play(name)` (Web Audio, no files) and `Sound.speak(text, lang)` (Web Speech). One mute for both.
 - `data/ingredients.json`, `data/recipes.json`, `data/guides.json`, `data/lines.json`: all the content. Schemas are in `SPEC.md`.

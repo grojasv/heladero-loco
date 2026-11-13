@@ -37,6 +37,10 @@
     tubsN: { es: '{n} tarrinas', ca: '{n} terrines', en: '{n} tubs' },
     tubs1: { es: '1 tarrina', ca: '1 terrina', en: '1 tub' },
     respinPct: { es: 'RE-SPIN {p}%', ca: 'RE-SPIN {p}%', en: 'RE-SPIN {p}%' },
+    badges: { es: 'Insignias', ca: 'Insígnies', en: 'Badges' },
+    newRecord: { es: '¡Nuevo récord!', ca: 'Nou rècord!', en: 'New record!' },
+    recordLine: { es: 'Tu mejor tarrina hasta hoy: {s} sobre 5.', ca: 'La teva millor terrina fins avui: {s} sobre 5.', en: 'Your best tub so far: {s} out of 5.' },
+    newBadge: { es: '¡Nueva insignia!', ca: 'Nova insígnia!', en: 'New badge!' },
     topMix: { es: 'Top: {name}', ca: 'Top: {name}', en: 'Top: {name}' },
   });
   HL.tabs.push({ id: 'history', hash: '#/history', icon: '🏆', label: 'tabHistory' });
@@ -107,11 +111,42 @@
   HL.insights = insights;
   HL.loaders.push(() => ranking().slice(0, 3).map((g) => ({ label: `🏆 ${mixName(g.mix)} (${g.score.toFixed(1)})`, mix: g.mix })));
 
+  // ---------- badges ----------
+  // Earned from the diary alone, so they survive a backup and an import. "badges" on the phone only remembers
+  // which ones were already announced.
+  const flavoursOf = (e) => (e.mix || []).map((x) => x.flavour).filter(Boolean);
+  const extrasOf = (e) => { const p = HL.pantry(); return [...(e.mix || []), ...(e.extras || [])].filter((x) => p[x.ing]?.shelf === 'extra').map((x) => x.ing); };
+  const BADGES = [
+    { id: 'first', icon: '🍦', name: { es: 'Primera tarrina', ca: 'Primera terrina', en: 'First tub' }, test: (l) => l.length >= 1 },
+    { id: 'perfect', icon: '🌟', name: { es: 'Cinco sobre cinco', ca: 'Cinc sobre cinc', en: 'Five out of five' }, test: (l) => l.some((e) => e.texture === 5 && e.taste === 5) },
+    { id: 'extras', icon: '🥜', name: { es: 'Tres extras probados', ca: 'Tres extres provats', en: 'Three extras tried' }, test: (l) => new Set(l.flatMap(extrasOf)).size >= 3 },
+    { id: 'flavours', icon: '🎨', name: { es: 'Cinco sabores', ca: 'Cinc gustos', en: 'Five flavours' }, test: (l) => new Set(l.flatMap(flavoursOf)).size >= 5 },
+    { id: 'smooth', icon: '🧈', name: { es: 'Cinco seguidas sin RE-SPIN', ca: 'Cinc seguides sense RE-SPIN', en: 'Five in a row, no RE-SPIN' }, test: (l) => l.some((_, i) => i + 5 <= l.length && l.slice(i, i + 5).every((e) => !e.respin)) },
+    { id: 'week', icon: '📅', name: { es: 'Siete en una semana', ca: 'Set en una setmana', en: 'Seven in a week' }, test: (l) => l.some((e, i) => l[i + 6] && new Date(e.at) - new Date(l[i + 6].at) <= 7 * 864e5) },
+    { id: 'ten', icon: '🔟', name: { es: 'Diez tarrinas', ca: 'Deu terrines', en: 'Ten tubs' }, test: (l) => l.length >= 10 },
+    { id: 'lab', icon: '🧪', name: { es: 'Veinticinco tarrinas', ca: 'Vint-i-cinc terrines', en: 'Twenty-five tubs' }, test: (l) => l.length >= 25 },
+  ];
+  const earned = () => { const l = readLog(); return BADGES.filter((b) => b.test(l)); };
+  const badgeStrip = () => { const have = new Set(earned().map((b) => b.id));
+    return `<h2 class="sec">🎖 ${esc(t('badges'))} <small class="muted">${have.size}/${BADGES.length}</small></h2>
+      <ul class="badges">${BADGES.map((b) => `<li class="${have.has(b.id) ? 'on' : ''}"><span aria-hidden="true">${have.has(b.id) ? b.icon : '🔒'}</span>${esc(t(b.name))}</li>`).join('')}</ul>`; };
+
   // ---------- rate ----------
+  // The scoop tower: one scoop per point, texture in pink and taste in mint.
+  function tower(texture, taste, fresh) {
+    const scoops = [...Array(texture).fill('#ff8fb1'), ...Array(taste).fill('#8fe0c4')], n = scoops.length, base = 232;
+    return `<svg class="tower" viewBox="0 0 60 262" aria-hidden="true">
+      <polygon points="14,${base} 46,${base} 30,${base + 28}" fill="#eab266" stroke="#2b2140" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M20,${base + 4} L33,${base + 20} M40,${base + 4} L27,${base + 20}" stroke="#b97a35" stroke-width="1.5"/>
+      ${scoops.map((c, i) => `<g class="${fresh && i === n - 1 ? 'scoop new' : 'scoop'}"><circle cx="${30 + (i % 2 ? 3 : -3)}" cy="${base - 10 - i * 22}" r="15" fill="${c}" stroke="#2b2140" stroke-width="2.5"/>
+        <circle cx="${24 + (i % 2 ? 3 : -3)}" cy="${base - 16 - i * 22}" r="3" fill="#fff" opacity="0.7"/></g>`).join('')}
+      ${n === 10 ? `<circle cx="27" cy="${base - 10 - 10 * 22 + 4}" r="7" fill="#e85f8a" stroke="#2b2140" stroke-width="2.5"/><path d="M27,${base - 233} q4,-12 12,-10" fill="none" stroke="#2b2140" stroke-width="2.5" stroke-linecap="round"/>` : ''}
+    </svg>`;
+  }
   let draft = null; // { slot, texture, taste, respin, note }
   const cones = (key, value) => `<div class="cones" role="group">${[1, 2, 3, 4, 5].map((n) =>
     `<button type="button" class="cone${n <= value ? ' on' : ''}" data-act="rate-set" data-key="${key}" data-v="${n}" aria-label="${n}">🍦</button>`).join('')}<b>${value || '–'}</b></div>`;
-  function drawRate() {
+  function drawRate(fresh) {
     const slot = draft.slot, tub = HL.tubs()[slot], m = HL.macros(tub.mix, tub.extras);
     const okToSave = draft.texture && draft.taste;
     view.innerHTML = `
@@ -122,9 +157,10 @@
         <details class="what"><summary>${esc(t('contents'))}</summary>${HL.contents([...(tub.mix || []), ...(tub.extras || [])])}</details>
         <p class="row end"><button type="button" class="btn small ghost" data-act="copy-macros" data-text="${esc(HL.copyLine(slot, m))}">📋 ${esc(t('copyMacros'))}</button></p></section>
       <section class="card rate">
-        <h2>${esc(t('texture'))}</h2>${cones('texture', draft.texture)}
-        <h2>${esc(t('taste'))}</h2>${cones('taste', draft.taste)}
-        <label class="check"><input type="checkbox" id="rateRespin"${draft.respin ? ' checked' : ''}> ${esc(t('respin'))}</label>
+        <div class="rate-main"><div><h2>${esc(t('texture'))}</h2>${cones('texture', draft.texture)}
+          <h2>${esc(t('taste'))}</h2>${cones('taste', draft.taste)}
+          <label class="check"><input type="checkbox" id="rateRespin"${draft.respin ? ' checked' : ''}> ${esc(t('respin'))}</label></div>
+          ${tower(draft.texture, draft.taste, fresh)}</div>
         <label class="field">${esc(t('note'))}<textarea id="rateNote" rows="2" placeholder="${esc(t('notePh'))}">${esc(draft.note)}</textarea></label>
       </section>
       <div class="actions">
@@ -152,7 +188,7 @@
     keepInputs();
     draft[el.dataset.key] = +el.dataset.v;
     play('tick');
-    const y = window.scrollY; drawRate(); window.scrollTo(0, y);
+    const y = window.scrollY; drawRate(true); window.scrollTo(0, y);
   };
   acts['rate-save'] = () => {
     if (!draft?.texture || !draft?.taste) return;
@@ -164,13 +200,20 @@
       macros: { kcal: HL.r0(m.kcal), protein: HL.r0(m.protein), carbs: HL.r0(m.carbs), fat: HL.r0(m.fat) },
       texture: draft.texture, taste: draft.taste, respin: draft.respin, note: draft.note.trim(),
     };
-    store.set('log', [entry, ...readLog()].slice(0, 500));
+    const before = readLog(), score = (entry.texture + entry.taste) / 2;
+    const record = before.length > 0 && score > Math.max(...before.map((e) => (e.texture + e.taste) / 2));
+    store.set('log', [entry, ...before].slice(0, 500));
     HL.setTub(slot, { state: 'empty' });
-    const score = (entry.texture + entry.taste) / 2;
+    const seen = store.get('badges', []), fresh = earned().filter((b) => !seen.includes(b.id));
+    if (fresh.length) store.set('badges', [...seen, ...fresh.map((b) => b.id)]);
     draft = null;
     if (score < 3) play('sad'); else { play('jingle'); sprinkles(); }
     HL.go('#/history');
-    setTimeout(() => HL.say(score >= 4.5 ? 'rateTop' : score < 3 ? 'rateLow' : 'rateMid'), 80);
+    setTimeout(() => {
+      HL.say(record ? 'record' : score >= 4.5 ? 'rateTop' : score < 3 ? 'rateLow' : 'rateMid');
+      if (record) HL.fx?.reward({ emoji: '🏆', title: t('newRecord'), lines: [t('recordLine', { s: score.toFixed(1) }), ...fresh.map((b) => `${b.icon} ${t(b.name)}`)] });
+      else if (fresh.length) HL.fx?.reward({ emoji: fresh[0].icon, title: t('newBadge'), lines: fresh.map((b) => t(b.name)) });
+    }, 80);
   };
   // A burst of sprinkles over the screen.
   function sprinkles() {
@@ -207,6 +250,7 @@
           <details class="what"><summary>${esc(t('contents'))}</summary>${HL.contents([...g.mix, ...g.extras])}</details>
           <p class="row end"><button type="button" class="btn small mint" data-act="hist-repeat" data-i="${i}">🔁 ${esc(t('repeat'))}</button></p>
         </article>`).join('')}</div>
+        ${badgeStrip()}
         <h2 class="sec">🔬 ${esc(t('insights'))}</h2>
         <p class="muted hint">${esc(t('insightsHint'))}</p>
         ${insights().map((x) => `<h3 class="sub">${esc(t(x.g))}</h3><ul class="card diary insight">${x.rows.map((r) => `<li><div><b>${esc(r.label)}</b>

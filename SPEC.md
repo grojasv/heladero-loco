@@ -33,7 +33,7 @@ Not nutrition or medical advice. Macros are computed from label data, never type
 | Backup | Export and import everything as one JSON file, in settings. The home screen reminds Guille when 5 ratings have no backup (0.6.0); "Luego" waits for 5 more. |
 | Extra screens | Saved recipes, batch shopping total, guides and fixes. |
 | Style | **Retro ice cream lab:** pastel mint, strawberry pink and vanilla cream with a dark ink outline, rounded cartoon type, light and dark. |
-| Animation | Soft and playful: ingredients drop into the tub, frost grows while freezing, a sparkle when ready, the tub spins, the mascot reacts. Honour `prefers-reduced-motion`. |
+| Animation | 0.7.0 adds a daily intro (lab doors, mascot, dripping name), the freezer home screen, tubs that show their contents, flying ingredients, the machine panel, a scoop tower, a record card and badges (earned from the diary alone; `heladero.badges` only remembers which were announced). All in `fx.js` and CSS, no image files. Soft and playful: ingredients drop into the tub, frost grows while freezing, a sparkle when ready, the tub spins, the mascot reacts. Honour `prefers-reduced-motion`. |
 | Sound | Soft synthesised effects (Web Audio, no files): a plop per ingredient, a frost chime on ready, a whirr on spin, a jingle on rating. **The mascot speaks his lines** (Web Speech, as El Titán). On by default; one mute button silences both. Lines under about 12 words, no emoji. |
 | Publishing | Guille approved on 2026-11-12: create the public repo, push each release and turn on Pages from slice 1, with the GitHub noreply commit email. |
 | Build | All 5 slices in a row, each checked in the browser at phone sizes; stop only at a real blocker. |
@@ -142,7 +142,7 @@ Plain HTML/CSS/JS, no build step, relative paths only.
 ## Code layout
 `app.js` is the core (`window.HL`: storage, languages, pantry, macros, tubs, router, mascot lines) and the tubs screen.
 Each feature file registers its routes, actions and tabs on `HL`: `builder.js`, `spin.js`, `history.js`, `more.js`.
-`sound.js` has the effects and the voice; `mascot.js` the SVG.
+`sound.js` has the effects and the voice; `mascot.js` the SVG; `fx.js` the intro, flying ingredients, rolling numbers, reward card and the mascot's eyes and dance.
 
 ## Build slices (all done)
 1. **Shell:** repo, PWA, languages, version and changelog, the mascot and icons, an empty tubs screen. → 0.1.0

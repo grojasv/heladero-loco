@@ -98,5 +98,15 @@
     "es": ["¡Copia de seguridad lista!"],
     "ca": ["Còpia de seguretat a punt!"],
     "en": ["Backup ready!"]
+  },
+  "dance": {
+    "es": ["¡Baile del helado! ¡Nadie me para!", "¡Ciencia y ritmo, maestro del frío!"],
+    "ca": ["Ball del gelat! Ningú no m'atura!", "Ciència i ritme, mestre del fred!"],
+    "en": ["Ice cream dance! Nobody stops me!", "Science and rhythm, master of the cold!"]
+  },
+  "record": {
+    "es": ["¡Nuevo récord del laboratorio! ¡Histórico!", "¡La mejor tarrina hasta hoy! ¡Eureka!"],
+    "ca": ["Nou rècord del laboratori! Històric!", "La millor terrina fins avui! Eureka!"],
+    "en": ["A new lab record! Historic!", "The best tub so far! Eureka!"]
   }
 }

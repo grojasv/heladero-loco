@@ -2,7 +2,7 @@
 // No build step. Feature screens live in their own files and register themselves on window.HL:
 // HL.routes[name] = { render(arg), tab }, HL.acts[name] = (el, event) => …, HL.tabs.push({ … }).
 window.HL = (() => {
-  const VERSION = '0.6.0'; // keep in sync with CHANGELOG.md
+  const VERSION = '0.7.0'; // keep in sync with CHANGELOG.md
   const LANGS = ['es', 'ca', 'en'];
   const LOCALE = { es: 'es-ES', ca: 'ca-ES', en: 'en-GB' };
   const DEFAULTS = { tubs: 7, freezeHours: 24 };
@@ -123,6 +123,29 @@ window.HL = (() => {
     }
     return '#ffe9a8';
   }
+  // What each ingredient looks like inside the tub. A protein takes its flavour's colour.
+  const ING_COLOR = { 'bebida-soja': '#f4ecd8', platano: '#ffe27a', 'yogur-griego-0': '#ffffff', 'cacao-puro': '#6e4630', 'crema-cacahuete': '#c98f5a',
+    'crema-avellana': '#9a6a48', 'crema-pistacho': '#a8cf8a', cacahuetes: '#d9a868', avellanas: '#a97448' };
+  const SHELF_COLOR = { base: '#f4ecd8', fruit: '#ffb3c8', other: '#e0d6ff', extra: '#c98f5a' };
+  function ingColor(x, p) {
+    const i = p[x.ing]; if (!i) return null;
+    return i.flavours?.find((f) => f.id === x.flavour)?.color || ING_COLOR[x.ing] || SHELF_COLOR[i.shelf] || null;
+  }
+  // Swirls: the colours of the other ingredients, biggest first (tiny amounts only count for cocoa and the like).
+  function tubSwirls(tub, main) {
+    const p = pantry(), vol = mixVolume(tub.mix) || 1, out = [];
+    for (const x of [...(tub.mix || [])].sort((a, b) => b.amount - a.amount)) {
+      const c = ingColor(x, p), shelf = p[x.ing]?.shelf;
+      if (!c || c === main || out.includes(c) || shelf === 'extra' || (x.amount / vol < 0.04 && shelf !== 'other')) continue;
+      out.push(c);
+    }
+    return out.slice(0, 3);
+  }
+  // Toppings: the extras, whether they went in with the mix or at the machine.
+  function tubToppings(tub) {
+    const p = pantry();
+    return [...new Set([...(tub.mix || []), ...(tub.extras || [])].filter((x) => p[x.ing]?.shelf === 'extra').map((x) => ingColor(x, p)).filter(Boolean))].slice(0, 3);
+  }
   function flavourName(tub) {
     const p = pantry();
     const names = (tub.mix || []).map((x) => p[x.ing]?.flavours?.find((f) => f.id === x.flavour)?.name).filter(Boolean);
@@ -137,12 +160,17 @@ window.HL = (() => {
       <path class="tub-body" d="M15,24 L85,24 L78,110 Q78,115 73,115 L27,115 Q22,115 22,110 Z"/>
       <g clip-path="url(#${id})">
         <rect class="tub-fill" x="10" y="${top.toFixed(1)}" width="80" height="${(116 - top).toFixed(1)}" fill="${color}"/>
+        ${level > 0 ? tubSwirls(tub, color).map((c, i, all) => { const y = (top + ((114 - top) * (i + 1)) / (all.length + 1)).toFixed(1);
+          return `<path class="tub-band" d="M6,${y} q11,${i % 2 ? 7 : -7} 22,0 t22,0 t22,0 t22,0" fill="none" stroke="${c}" stroke-width="${Math.max(4, Math.min(8, (114 - top) / (all.length * 2.2))).toFixed(1)}" stroke-linecap="round"/>`; }).join('') : ''}
+        ${level > 0 && st !== 'spun' ? tubToppings(tub).map((c, i) => `<ellipse class="tub-nut" cx="${30 + i * 19}" cy="${(top + 9 + (i % 2) * 5).toFixed(1)}" rx="4.5" ry="3.2" fill="${c}" transform="rotate(${i * 40 - 20} ${30 + i * 19} ${(top + 9).toFixed(1)})"/>`).join('') : ''}
         ${level > 0 ? `<path class="tub-wave" d="M10,${top.toFixed(1)} q10,-5 20,0 t20,0 t20,0 t20,0 v6 h-80 Z" fill="#fff" opacity="0.35"/>` : ''}
         ${st === 'freezing' || st === 'ready' ? `<rect class="tub-frost" x="10" y="20" width="80" height="100" fill="#eaf8ff" opacity="${(0.15 + 0.5 * info.progress).toFixed(2)}"/>
           <g class="tub-flakes" fill="#fff" opacity="${(0.3 + 0.7 * info.progress).toFixed(2)}"><circle cx="30" cy="50" r="2.2"/><circle cx="62" cy="40" r="1.8"/><circle cx="48" cy="72" r="2.4"/><circle cx="70" cy="88" r="1.8"/><circle cx="34" cy="96" r="2"/><circle cx="56" cy="104" r="1.6"/></g>` : ''}
       </g>
       <path class="tub-outline" d="M15,24 L85,24 L78,110 Q78,115 73,115 L27,115 Q22,115 22,110 Z"/>
-      ${st === 'spun' ? `<path class="tub-swirl" d="M24,24 Q22,10 36,12 Q34,2 50,3 Q66,2 64,12 Q78,10 76,24 Z" fill="${color}"/>` : `<rect class="tub-lid" x="9" y="12" width="82" height="13" rx="5"/>`}
+      ${st === 'spun' ? `<path class="tub-swirl" d="M24,24 Q22,10 36,12 Q34,2 50,3 Q66,2 64,12 Q78,10 76,24 Z" fill="${color}"/>
+        ${tubSwirls(tub, color).slice(0, 1).map((c) => `<path d="M31,19 Q40,12 50,17 T69,16" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round"/>`).join('')}
+        ${(() => { const tops = tubToppings(tub); return tops.length ? [[37, 14], [50, 8], [62, 14], [44, 20], [57, 21]].map(([x, y], i) => `<ellipse class="tub-nut" cx="${x}" cy="${y}" rx="3.6" ry="2.6" fill="${tops[i % tops.length]}" transform="rotate(${i * 50} ${x} ${y})"/>`).join('') : ''; })()}` : `<rect class="tub-lid" x="9" y="12" width="82" height="13" rx="5"/>`}
       ${st === 'empty' ? '<path class="tub-plus" d="M50,58 v24 M38,70 h24"/>' : ''}
       ${st === 'ready' ? '<g class="tub-sparks"><path d="M12,40 l3,7 7,3 -7,3 -3,7 -3,-7 -7,-3 7,-3 Z"/><path d="M88,62 l2,5 5,2 -5,2 -2,5 -2,-5 -5,-2 5,-2 Z"/><path d="M80,6 l2,5 5,2 -5,2 -2,5 -2,-5 -5,-2 5,-2 Z"/></g>' : ''}
     </svg>`;
@@ -160,6 +188,14 @@ window.HL = (() => {
       ${fl ? `<span class="tub-flavour">${esc(fl)}</span>` : ''}
       <span class="tub-sub">${esc(sub)}</span></button>`;
   }
+
+  // The freezer: tubs three to a shelf.
+  function shelvesHtml(list) {
+    let out = '';
+    for (let i = 0; i < list.length; i += 3) out += `<div class="frz-shelf">${list.slice(i, i + 3).map((tub, j) => tubCard(tub, i + j)).join('')}</div>`;
+    return out;
+  }
+  const ICICLES = (() => { let d = 'M0,0 H300 V3', x = 300; const w = [14, 9, 18, 11, 7, 16, 10, 13, 8, 17]; for (let i = 0; x > 0; i++) { const s = w[i % w.length], h = 5 + ((i * 7) % 11); d += ` Q${x - s * 0.2},3 ${x - s / 2},${3 + h} Q${x - s * 0.8},3 ${Math.max(0, x - s)},3`; x -= s; } return `<svg class="frz-ice" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="${d} Z"/></svg>`; })();
 
   // ---------- mascot lines, toast and voice ----------
   const mascot = (pose) => (window.Heladero ? window.Heladero.svg(pose) : '<div class="mascot-fallback">🍦</div>');
@@ -208,8 +244,12 @@ window.HL = (() => {
         <button type="button" class="mascot" id="heroMascot" data-act="mascot" aria-label="El Heladero Loco">${mascot(count('ready') ? 'cheer' : 'idle')}</button>
         <div class="bubble" id="bubble">${esc(line(count('ready') ? 'readyHello' : 'hello'))}</div>
       </section>
-      <p class="counts">${esc(t('counts', { f: count('freezing'), r: count('ready'), e: count('empty') }))}</p>
-      <div class="tubs" id="tubs">${list.map(tubCard).join('')}</div>
+      <section class="frz">
+        <div class="frz-top"><span class="frz-led" aria-hidden="true">❄ −18 °C</span><span class="counts">${esc(t('counts', { f: count('freezing'), r: count('ready'), e: count('empty') }))}</span></div>
+        ${ICICLES}
+        <div class="tubs" id="tubs">${shelvesHtml(list)}</div>
+        <i class="mist m1" aria-hidden="true"></i><i class="mist m2" aria-hidden="true"></i>
+      </section>
       ${(window.HL.homeExtras || []).map((f) => f()).join('')}`;
     clearJustReady();
   }
@@ -254,7 +294,7 @@ window.HL = (() => {
     if (current !== 'home' || document.hidden) return;
     const fresh = checkReady();
     const el = $('tubs');
-    if (el) el.innerHTML = tubs().map(tubCard).join('');
+    if (el) el.innerHTML = shelvesHtml(tubs());
     if (fresh) { window.Sound?.play('chime'); say('ready', {}, { pose: 'cheer' }); clearJustReady(); }
   }, 20000);
   document.addEventListener('visibilitychange', () => { if (!document.hidden && current === 'home') route(); });
